@@ -1,0 +1,1123 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation for the Bloom maternal health platform">
+      
+      
+        <meta name="author" content="Bloom Team">
+      
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../architecture/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Informational Website - Bloom Technical Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#informational-website" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bloom Technical Documentation" class="md-header__button md-logo" aria-label="Bloom Technical Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bloom Technical Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Informational Website
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bloom Technical Documentation" class="md-nav__button md-logo" aria-label="Bloom Technical Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Bloom Technical Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informational Website
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frontend-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA & Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="informational-website">Informational Website</h1>
+<h1 id="1-overview"><strong>1. Overview</strong></h1>
+<p>The Bloom informational website provides public information about the Bloom platform and its services.</p>
+<p>The website is intended for visitors who want to learn about Bloom before using the mobile application or administrative dashboard.</p>
+<h2 id="bloom-informational-website"><strong>Bloom Informational Website:</strong></h2>
+<p><strong>[https://bloom-rho-sand.vercel.app/]</strong></p>
+<p>The informational website is separate from the authenticated administrative dashboard.</p>
+<pre><code class="language-text">Visitor
+
+       |
+
+       |
+
+Informational Website
+
+       |
+
+       |
+
+Bloom Platform Information
+</code></pre>
+<p>The website can provide information about Bloom, its purpose, features, services, and other public-facing content.</p>
+<hr />
+<h2 id="2-purpose-of-the-informational-website">** 2. Purpose of the Informational Website**</h2>
+<p>The informational website provides a public entry point to the Bloom platform.</p>
+<p>Its main purposes are:</p>
+<ul>
+<li>Introduce the Bloom platform</li>
+<li>Explain the purpose of Bloom</li>
+<li>Provide information about the platform's features</li>
+<li>Explain the services available to mothers, caregivers, and CHPs</li>
+<li>Provide general information about maternal health support</li>
+<li>Provide links to the Bloom application and other relevant resources</li>
+</ul>
+<p>The informational website does not provide direct access to the PostgreSQL database.</p>
+<hr />
+<h2 id="3-website-structure">** 3. Website Structure**</h2>
+<p>The informational website contains public-facing pages and content.</p>
+<p>A typical structure is:</p>
+<pre><code class="language-text">Informational Website
+
+|
+
+|-- Home
+
+|
+
+|-- About Bloom
+
+|
+
+|-- Features
+
+|
+
+|-- Services
+
+|
+
+|-- How Bloom Works
+
+|
+
+|-- Contact / Information
+
+|
+
+`-- Links to Bloom Services
+</code></pre>
+<p>The exact pages depend on the implemented website structure.</p>
+<hr />
+<h2 id="4-navigation-bar">** 4. Navigation Bar**</h2>
+<p>The informational website should be accessible from the main navigation bar.</p>
+<p>The navigation should provide a clear link to the informational website so users can easily access public information about Bloom.</p>
+<p>Example navigation structure:</p>
+<pre><code class="language-text">Navigation Bar
+
+Home
+
+Informational Website
+
+About
+
+Features
+
+Contact
+
+Login
+</code></pre>
+<p>The <strong>Informational Website</strong> item should link to the public informational website.</p>
+<p>If the informational website is a separate route, the navigation link should point to that route.</p>
+<p>Example:</p>
+<pre><code class="language-text">Informational Website
+
+        |
+
+        v
+
+/informational
+</code></pre>
+<p>If it is hosted separately, the navigation item should point to the deployed website URL.</p>
+<hr />
+<h2 id="5-placement-in-the-project">** 5. Placement in the Project**</h2>
+<p>The informational website should be placed in the frontend project alongside the other public-facing pages.</p>
+<p>For example:</p>
+<pre><code class="language-text">frontend/
+
+|
+
+`-- app/
+
+    |
+
+    |-- informational/
+
+    |   |
+
+    |   `-- page.jsx
+
+    |
+
+    |-- admin/
+
+    |
+
+    |-- layout.jsx
+
+    |
+
+    `-- other frontend pages
+</code></pre>
+<p>The <code>informational</code> directory contains the page responsible for displaying the public informational website.</p>
+<hr />
+<h2 id="6-user-access">** 6. User Access**</h2>
+<p>The informational website is intended to be publicly accessible.</p>
+<p>Unlike the administrative dashboard, visitors do not need an administrator account to view the public information.</p>
+<pre><code class="language-text">Visitor
+
+       |
+
+       v
+
+Informational Website
+
+       |
+
+       v
+
+Public Information
+</code></pre>
+<p>Administrative functionality remains protected separately.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       v
+
+Admin Login
+
+       |
+
+       v
+
+Administrative Dashboard
+</code></pre>
+<hr />
+<h2 id="7-informational-website-and-bloom-backend">** 7. Informational Website and Bloom Backend**</h2>
+<p>Public informational content may be displayed directly by the frontend when the content is static.</p>
+<p>If information needs to be retrieved dynamically, the website can communicate with the Bloom backend through the API.</p>
+<pre><code class="language-text">Informational Website
+
+       |
+
+       | API Request (when required)
+
+       v
+
+Bloom Backend
+
+       |
+
+       v
+
+Backend Services
+
+       |
+
+       v
+
+PostgreSQL
+</code></pre>
+<p>The informational website does not connect directly to PostgreSQL.</p>
+<hr />
+<h2 id="8-styling">** 8. Styling **</h2>
+<p>The informational website uses frontend styling to provide a consistent and user-friendly interface.</p>
+<p>Styling can be used for:</p>
+<ul>
+<li>Navigation</li>
+<li>Headers</li>
+<li>Sections</li>
+<li>Buttons</li>
+<li>Cards</li>
+<li>Images</li>
+<li>Typography</li>
+<li>Spacing</li>
+<li>Responsive layouts</li>
+<li>Footer</li>
+</ul>
+<p>The informational website should maintain the same general visual identity as the Bloom platform.</p>
+<p>Example:</p>
+<pre><code class="language-css">.heroTitle {
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.section {
+  padding: 40px 20px;
+}
+</code></pre>
+<hr />
+<h2 id="9-responsive-design">** 9. Responsive Design**</h2>
+<p>The informational website should support different screen sizes.</p>
+<p>The layout should work on:</p>
+<ul>
+<li>Desktop computers</li>
+<li>Tablets</li>
+<li>Mobile devices</li>
+</ul>
+<p>Responsive CSS allows the website content and navigation to adapt to different screen widths.</p>
+<p>Example:</p>
+<pre><code class="language-css">@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 32px;
+  }
+}
+</code></pre>
+<hr />
+<h2 id="10-relationship-with-the-bloom-applications"><strong>10. Relationship with the Bloom Applications</strong></h2>
+<p>The informational website is one part of the Bloom platform.</p>
+<pre><code class="language-text">                         Bloom Platform
+
+                              |
+
+             +----------------+----------------+
+
+             |                |                |
+
+             v                v                v
+
+      Informational       Mobile App      Admin Dashboard
+
+        Website
+
+             |                |                |
+
+             |                |                |
+
+             +----------------+----------------+
+
+                              |
+
+                              v
+
+                       Bloom Backend
+
+                              |
+
+                              v
+
+                         PostgreSQL
+</code></pre>
+<p>The informational website provides public information, while the mobile application provides functionality for users and the administrative dashboard provides management functionality for authorized administrators.</p>
+<hr />
+<h2 id="11-informational-website-and-mobile-application">** 11. Informational Website and Mobile Application**</h2>
+<p>The informational website can provide information about the mobile application and explain the features available to users.</p>
+<p>For example, it can explain that mothers can:</p>
+<ul>
+<li>Manage their maternal profile</li>
+<li>Log symptoms</li>
+<li>Set reminders</li>
+<li>Receive reminder notifications</li>
+<li>Access maternal health tips</li>
+</ul>
+<p>Caregivers and CHPs can access the functionality and information provided to them according to their roles.</p>
+<hr />
+<h2 id="12-informational-website-and-administrative-dashboard">** 12. Informational Website and Administrative Dashboard**</h2>
+<p>The informational website is separate from the administrative dashboard.</p>
+<p>The informational website is public-facing, while the administrative dashboard is restricted to authorized administrators.</p>
+<pre><code class="language-text">Public User
+
+     |
+
+     v
+
+Informational Website
+
+     |
+
+     v
+
+Public Information
+
+
+Administrator
+
+     |
+
+     v
+
+Admin Login
+
+     |
+
+     v
+
+Administrative Dashboard
+
+     |
+
+     v
+
+Protected Administrative Functions
+</code></pre>
+<p>This separation prevents public visitors from accessing administrative functionality.</p>
+<hr />
+<h2 id="13-deployment">** 13. Deployment**</h2>
+<p>The informational website should be deployed using the hosting platform configured for the frontend application.</p>
+<p>The production deployment follows the general flow:</p>
+<pre><code class="language-text">Website Source Code
+
+       |
+
+       v
+
+Git Repository
+
+       |
+
+       v
+
+Hosting Platform
+
+       |
+
+       v
+
+Hosted Informational Website
+</code></pre>
+<p>The production URL should be documented below:</p>
+<pre><code class="language-text">Bloom Informational Website:
+
+[ADD THE HOSTED INFORMATIONAL WEBSITE LINK HERE]
+</code></pre>
+<p>Replace the placeholder with the actual deployed Bloom informational website URL.</p>
+<hr />
+<h2 id="14-navigation-link">** 14. Navigation Link **</h2>
+<p>The informational website should also be included in the project's navigation configuration.</p>
+<p>For a Next.js application, the navigation can contain a link similar to:</p>
+<pre><code class="language-jsx">&lt;Link href=&quot;/informational&quot;&gt;
+  Informational Website
+&lt;/Link&gt;
+</code></pre>
+<p>If the website is deployed separately, the link can instead point to the hosted website:</p>
+<pre><code class="language-jsx">&lt;a href=&quot;https://bloom-rho-sand.vercel.app/&quot;&gt;
+  Informational Website
+&lt;/a&gt;
+</code></pre>
+<hr />
+<p><strong>## 15. Access Flow</strong></p>
+<p>The overall access flow is:</p>
+<pre><code class="language-text">Visitor
+
+       |
+
+       v
+
+Navigation Bar
+
+       |
+
+       v
+
+Informational Website
+
+       |
+
+       v
+
+Bloom Information
+</code></pre>
+<p>For users who need the Bloom application:</p>
+<pre><code class="language-text">Visitor
+
+       |
+
+       v
+
+Informational Website
+
+       |
+
+       v
+
+Bloom Application
+</code></pre>
+<p>For administrators:</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       v
+
+Admin Login
+
+       |
+
+       v
+
+Admin Dashboard
+
+       |
+
+       v
+
+Bloom Backend
+</code></pre>
+<hr />
+<h2 id="16-summary">** 16. Summary**</h2>
+<p>The Bloom informational website provides the public-facing introduction to the Bloom platform.</p>
+<p>It is separate from the administrative dashboard and does not provide direct access to the database.</p>
+<p>The informational website:</p>
+<ul>
+<li>Provides public information about Bloom</li>
+<li>Explains Bloom's features and services</li>
+<li>Provides information about the mobile application</li>
+<li>Provides navigation to relevant Bloom services</li>
+<li>Uses responsive frontend styling</li>
+<li>Can communicate with the Bloom backend when dynamic information is required</li>
+<li>Is deployed as a public-facing website</li>
+<li>Is accessible from the main navigation bar</li>
+<li>Has its deployed URL documented at the beginning of this page</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,182 +1,138 @@
-# Security
 
-## 1. Overview
+Bloom applies cybersecurity measures to protect user accounts, sensitive maternal health information, API endpoints, and administrative functionality.
 
-Security in Bloom is handled primarily through the backend API.
+### JWT Authentication
 
-The mobile application and administrative dashboard communicate with the backend rather than accessing the database directly.
+Bloom uses **JSON Web Tokens (JWT)** to authenticate users.
+
+After successful login, a JWT is used to identify the authenticated user when accessing protected API endpoints.
+
+**Meaning:** JWT helps the system verify that a request is coming from an authenticated user.
+
+---
+
+### Role-Based Access Control
+
+Bloom uses **role-based access control (RBAC)** to ensure that users can only access functionality appropriate to their role.
+
+- **Mother:** Can manage her maternal profile, log symptoms, set reminders, receive reminder notifications, and access maternal health tips.
+- **Caregiver:** Can access information made available to them about the mothers they support.
+- **Community Health Promoter (CHP):** Can access information required to support assigned mothers.
+- **Administrator:** Can manage users, maternal health content, platform metrics, safety alerts, and administrator account settings.
+
+**Meaning:** RBAC prevents users from accessing functions or information that belong to other roles.
+
+---
+
+### API Security
+
+Protected API endpoints require authentication and authorization before allowing access to protected resources.
+
+**Meaning:** API security prevents unauthorized users from accessing or modifying protected backend functionality.
+
+---
+
+### Rate Limiting
+
+Bloom applies **rate limiting within a 15-minute window** to control excessive API requests.
+
+**Meaning:** Rate limiting helps protect the API against excessive requests, brute-force attempts, and automated abuse.
+
+---
+
+### OTP Verification
+
+Bloom uses **One-Time Password (OTP)** verification as an additional identity verification mechanism.
+
+**Meaning:** OTP provides an additional verification step to confirm the user's identity.
+
+---
+
+### IDOR Protection
+
+Bloom protects against **Insecure Direct Object Reference (IDOR)** vulnerabilities by checking whether the authenticated user is authorized to access the requested resource.
+
+**Meaning:** A user cannot simply change an ID in an API request to access another user's private information.
+
+---
+
+### Password Hashing
+
+User passwords are **hashed before being stored** and are not stored as plain text.
+
+**Meaning:** Password hashing protects user credentials if the database is compromised.
+
+---
+
+### Least Privilege
+
+Bloom follows the **principle of least privilege**, giving users and system components only the permissions required for their intended tasks.
+
+**Meaning:** Users and system components do not receive unnecessary access to sensitive information or functionality.
+
+---
+
+### Sensitive Data Protection and Encryption
+
+Bloom protects sensitive information such as **maternal health information, user credentials, authentication information, and other private user data**.
+
+Sensitive information is protected using appropriate security controls, including encryption.
+
+- **Encryption in transit** protects information while it is being transferred between the client, API, and backend.
+- **Encryption at rest** protects sensitive information while it is stored.
+- Passwords are protected using **hashing**, rather than reversible encryption.
+- Sensitive credentials and secrets are stored in environment configuration and should not be committed to the repository.
+
+**Meaning:** Encryption helps prevent unauthorized people from reading sensitive information during transmission or from stored data.
+
+---
+
+### Administrative Access
+
+Administrative functionality is restricted to authorized administrator accounts.
+
+Administrators can:
+
+- Manage users
+- Manage maternal health content and tips
+- View platform growth and engagement metrics
+- Monitor safety alerts
+- Manage administrator account settings
+
+**Meaning:** Restricting administrative access helps prevent unauthorized changes to users, content, platform information, and system settings.
+
+---
+### Security Summary
 
 ```text
-Mobile Application
-       |
-       | API request
-       |
+Authentication
+     |
+     |-- JWT
+     |-- OTP Verification
+     |
+     v
+Authorization
+     |
+     |-- Role-Based Access Control
+     |-- Least Privilege
+     |-- IDOR Protection
+     |
+     v
+API Protection
+     |
+     |-- Rate Limiting (15 minutes)
+     |-- Protected Endpoints
+     |
+     v
+Data Protection
+     |
+     |-- Sensitive Data Protection
+     |-- Encryption
+     |-- Password Hashing
+     |
+     v
 Bloom Backend
-       |
-       | Database access
-       |
+     |
+     v
 PostgreSQL
 ```
-
-The same approach is used for the administrative dashboard.
-
----
-
-## 2. Authentication and Authorization
-
-Bloom uses authentication to control access to the platform.
-
-The backend is responsible for handling authentication and authorization for requests coming from the client applications.
-
-```text
-User
- |
- |
-Client Application
- |
- | Authentication request
- |
-Bloom Backend
- |
- | Authentication / Authorization
- |
-Access to requested resource
-```
-
-Different users have different roles within Bloom, including:
-
-- Mothers
-- Caregivers
-- Community Health Promoters (CHPs)
-- Administrators
-
-Access to platform functionality is based on the user's role.
-
----
-
-## 3. API Security
-
-The backend provides the main security layer for API requests.
-
-Security-related functionality is handled through the backend, including:
-
-- Authentication
-- Authorization
-- Request handling
-- Input validation
-- Rate limiting
-- Access control
-
-The backend contains a dedicated security module:
-
-```text
-backend/
-|
-\-- security.py
-```
-
-Rate limiting is also configured within the backend:
-
-```text
-backend/
-|
-\-- bloom/
-    |
-    \-- core/
-        |
-        \-- limiter.py
-```
-
----
-
-## 4. Database Access
-
-The mobile application and administrative dashboard do not connect directly to PostgreSQL.
-
-All database operations go through the backend.
-
-```text
-Mobile / Dashboard
-       |
-       | API
-       |
-Backend
-       |
-       | Database access
-       |
-PostgreSQL
-```
-
-This keeps database access within the backend rather than exposing the database directly to client applications.
-
----
-
-## 5. Environment Variables
-
-Environment-specific configuration is kept outside the source code.
-
-The backend contains an example environment file:
-
-```text
-backend/
-|
-\-- .env.example
-```
-
-The mobile application and dashboard also contain their own `.env.example` files.
-
-Actual environment files should not be committed to the repository when they contain private credentials or configuration values.
-
----
-
-## 6. Sensitive Data
-
-Bloom handles application data such as:
-
-- User information
-- Maternal profiles
-- Symptoms and symptom logs
-- Care schedules
-- Location information
-
-Access to this information is handled through the backend API and the application's authentication and authorization mechanisms.
-
-Only the functionality available to an authenticated and authorized user should expose the corresponding data.
-
----
-
-## 7. Security Responsibilities
-
-Security is shared across the different parts of the platform:
-
-| Component | Main responsibility |
-|---|---|
-| Mobile | User authentication and secure API communication |
-| Dashboard | Administrator authentication and access control |
-| Backend | Authentication, authorization, validation and API security |
-| Database | Persistent storage of application data |
-
-The backend acts as the main security boundary between the client applications and stored data.
-
----
-
-## 8. Security Practices
-
-When contributing to Bloom:
-
-- Do not commit `.env` files containing secrets.
-- Keep API credentials and private configuration out of source code.
-- Use the backend API when accessing application data.
-- Do not expose database credentials to client applications.
-- Follow the project's authentication and authorization patterns when adding new functionality.
-
----
-
-## 9. Related Documentation
-
-- [Getting Started](getting-started.md)
-- [System Architecture](architecture.md)
-- [Backend API](backend-api.md)
-- [Database](database.md)
-- [Mobile Application](mobile.md)
-- [Administrative Dashboard](frontend-web.md)

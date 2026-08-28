@@ -1,0 +1,2189 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation for the Bloom maternal health platform">
+      
+      
+        <meta name="author" content="Bloom Team">
+      
+      
+      
+        <link rel="prev" href="../mobile/">
+      
+      
+        <link rel="next" href="../design/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Dashboard - Bloom Technical Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#administrative-dashboard" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bloom Technical Documentation" class="md-header__button md-logo" aria-label="Bloom Technical Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bloom Technical Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dashboard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bloom Technical Documentation" class="md-nav__button md-logo" aria-label="Bloom Technical Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Bloom Technical Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../informational-website/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informational Website
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technologies-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Technologies Used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dashboard-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dashboard Hosting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dashboard-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Dashboard Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-nextjs-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Next.js Application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dashboard-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dashboard Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-environment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Environment Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-api-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. API Connection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-account-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Account Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. User Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-content-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Content Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-growth-and-engagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Growth and Engagement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-safety-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Safety Alerts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-react-and-jsx-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. React and JSX Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-fetching-data-from-the-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Fetching Data from the Backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-styling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Styling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-dashboard-and-backend-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Dashboard and Backend Communication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-database-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Database Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-dashboard-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Dashboard Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-dashboard-areas-and-backend-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Dashboard Areas and Backend Functionality
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Local Development
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-vercel-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Vercel Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-hosted-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Hosted Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-deployment-and-configuration-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. Deployment and Configuration Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA & Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technologies-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Technologies Used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dashboard-hosting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dashboard Hosting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dashboard-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Dashboard Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-nextjs-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Next.js Application
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dashboard-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dashboard Layout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-environment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Environment Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-api-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. API Connection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-account-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Account Settings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-user-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. User Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-content-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Content Management
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Metrics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-growth-and-engagement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Growth and Engagement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-safety-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Safety Alerts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-react-and-jsx-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. React and JSX Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-fetching-data-from-the-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Fetching Data from the Backend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-styling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Styling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-dashboard-and-backend-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Dashboard and Backend Communication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-database-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Database Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-dashboard-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Dashboard Security
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-dashboard-areas-and-backend-functionality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Dashboard Areas and Backend Functionality
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. Local Development
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-vercel-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. Vercel Deployment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-hosted-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. Hosted Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-deployment-and-configuration-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. Deployment and Configuration Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="administrative-dashboard">Administrative Dashboard</h1>
+<h2 id="1-overview">1. Overview</h2>
+<p>The Bloom administrative dashboard is the web interface used by Bloom administrators.</p>
+<p>It provides administrators with access to platform management, user management, content management, account settings, and platform metrics.</p>
+<p>The dashboard is built using <strong>Next.js</strong> and communicates with the Bloom backend through the API.</p>
+<p>The dashboard does not connect directly to the PostgreSQL database. All database operations are handled by the Bloom backend.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       |
+
+Admin Dashboard
+
+       |
+
+       | API requests
+
+       |
+
+   Bloom Backend
+
+       |
+
+       | Database operations
+
+       |
+
+   PostgreSQL
+</code></pre>
+<p>The dashboard is hosted using <strong>Vercel</strong>.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       |
+
+Hosted Bloom Dashboard
+
+       |
+
+       | HTTPS / API requests
+
+       |
+
+   Bloom Backend
+
+       |
+
+       |
+
+   PostgreSQL
+</code></pre>
+<hr />
+<h2 id="2-technologies-used">2. Technologies Used</h2>
+<p>The administrative dashboard uses the following technologies:</p>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Next.js</td>
+<td>Frontend web application framework</td>
+</tr>
+<tr>
+<td>React</td>
+<td>Building the dashboard user interface</td>
+</tr>
+<tr>
+<td>JavaScript / JSX</td>
+<td>Application logic and UI components</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>Styling dashboard pages and components</td>
+</tr>
+<tr>
+<td>Vercel</td>
+<td>Hosting and deployment of the dashboard</td>
+</tr>
+<tr>
+<td>Bloom Backend API</td>
+<td>Communication with backend services</td>
+</tr>
+<tr>
+<td>Environment Variables</td>
+<td>Configuration of the backend API URL and other settings</td>
+</tr>
+</tbody>
+</table>
+<p>Next.js provides the application structure and routing for the administrative dashboard.</p>
+<hr />
+<h2 id="3-dashboard-hosting">3. Dashboard Hosting</h2>
+<p>The Bloom administrative dashboard is deployed and hosted using <strong>Vercel</strong>.</p>
+<p>Vercel provides the deployment environment for the Next.js application.</p>
+<pre><code class="language-text">Next.js Dashboard
+
+       |
+
+       | Build and Deployment
+
+       v
+
+     Vercel
+
+       |
+
+       | HTTPS
+
+       v
+
+Administrator
+</code></pre>
+<p>The hosted dashboard can be accessed through the following URL:</p>
+<pre><code class="language-text">Hosted Dashboard:
+[https://spyhive-dashboard.vercel.app]
+</code></pre>
+<p>The Vercel URL should be added here after deployment, for example:</p>
+<pre><code class="language-text">https://your-dashboard-name.vercel.app
+</code></pre>
+<p>The dashboard is deployed from the frontend project and is made available to authorized administrators through the hosted Vercel application.</p>
+<hr />
+<h2 id="4-dashboard-project-structure">4. Dashboard Project Structure</h2>
+<p>The dashboard is organized under the <code>admin</code> area of the Next.js application.</p>
+<pre><code class="language-text">frontend/
+|
+|-- app/
+|   |
+|   |-- admin/
+|       |
+|       |-- account-settings/
+|       |
+|       |-- auth/
+|       |   |
+|       |   `-- login/
+|       |
+|       |-- content-management/
+|       |
+|       |-- metrics/
+|       |   |
+|       |   |-- growth-and-engagement/
+|       |   `-- safety-alerts/
+|       |
+|       `-- users-management/
+|
+|-- api/
+|
+|-- layout.jsx
+|
+`-- other frontend files
+</code></pre>
+<p>The dashboard pages are separated into different folders according to their functionality.</p>
+<p>This makes the administrative features easier to maintain and organize.</p>
+<hr />
+<h2 id="5-nextjs-application">5. Next.js Application</h2>
+<p>The administrative dashboard is implemented using <strong>Next.js</strong>.</p>
+<p>Next.js provides the application structure, page routing, rendering, and frontend functionality required by the dashboard.</p>
+<p>The dashboard uses the Next.js <code>app</code> directory to organize its pages.</p>
+<p>For example:</p>
+<pre><code class="language-text">app/
+|
+`-- admin/
+    |
+    |-- auth/
+    |   `-- login/
+    |       `-- page.jsx
+    |
+    |-- users-management/
+    |   `-- page.jsx
+    |
+    |-- content-management/
+    |
+    |-- account-settings/
+    |
+    `-- metrics/
+</code></pre>
+<p>Each <code>page.jsx</code> file represents a page or route within the dashboard.</p>
+<hr />
+<h2 id="6-dashboard-layout">6. Dashboard Layout</h2>
+<p>The dashboard uses a shared layout for the administrative area.</p>
+<p>The layout is located in:</p>
+<pre><code class="language-text">app/
+|
+`-- admin/
+    |
+    `-- layout.jsx
+</code></pre>
+<p>The layout provides the common structure used by administrative pages.</p>
+<pre><code class="language-text">Admin Layout
+
+      |
+
+      |-- Navigation
+
+      |-- Dashboard Content
+
+      |-- Common UI Elements
+
+      `-- Administrative Pages
+</code></pre>
+<p>Using a shared layout allows the different dashboard pages to maintain a consistent structure and styling.</p>
+<hr />
+<h2 id="7-environment-configuration">7. Environment Configuration</h2>
+<p>The dashboard uses environment variables to configure the backend API connection.</p>
+<p>The local development environment uses:</p>
+<pre><code class="language-text">.env.local
+</code></pre>
+<p>The project contains environment variables such as:</p>
+<pre><code class="language-text">NEXT_PUBLIC_API_URL=&quot;https://bloom-8db38d59208f.herokuapp.com&quot;
+</code></pre>
+<p>This variable contains the URL of the Bloom backend API.</p>
+<p>The dashboard uses this value when making API requests.</p>
+<pre><code class="language-text">Next.js Dashboard
+
+       |
+
+       | NEXT_PUBLIC_API_URL
+
+       v
+
+Bloom Backend API
+
+       |
+
+       v
+
+PostgreSQL
+</code></pre>
+<p>Environment variables prevent the backend URL and other configuration values from being hard-coded throughout the application.</p>
+<p>The <code>.env.local</code> file should not be committed if it contains sensitive or environment-specific configuration.</p>
+<p>For Vercel deployment, the required environment variables should be configured in the Vercel project settings.</p>
+<hr />
+<h2 id="8-api-connection">8. API Connection</h2>
+<p>The dashboard communicates with the Bloom backend through HTTP API requests.</p>
+<p>The backend API URL is provided through the environment configuration.</p>
+<p>For example:</p>
+<pre><code class="language-javascript">const API_URL = process.env.NEXT_PUBLIC_API_URL;
+</code></pre>
+<p>The dashboard can then use the API URL when sending requests to the backend.</p>
+<p>Example:</p>
+<pre><code class="language-javascript">const response = await fetch(`${API_URL}/users`);
+const data = await response.json();
+</code></pre>
+<p>The dashboard does not communicate directly with PostgreSQL.</p>
+<pre><code class="language-text">Admin Dashboard
+       |
+       | HTTP API Request
+       v
+Bloom Backend
+       |
+       | Database Operation
+       v
+PostgreSQL
+</code></pre>
+<hr />
+<h2 id="9-authentication">9. Authentication</h2>
+<p>Administrator authentication is located under:</p>
+<pre><code class="language-text">admin/
+|
+`-- auth/
+    |
+    `-- login/
+        |
+        `-- page.jsx
+</code></pre>
+<p>The login page provides the entry point for administrators to authenticate.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       |
+
+    Login Page
+
+       |
+
+       | Authentication Request
+
+       v
+
+Bloom Backend
+
+       |
+
+       |
+
+Authentication
+
+       |
+
+       v
+
+Authenticated Administrator
+
+       |
+
+       v
+
+Admin Dashboard
+</code></pre>
+<p>Only authenticated and authorized administrators should be able to access protected administrative functionality.</p>
+<hr />
+<h2 id="10-account-settings">10. Account Settings</h2>
+<p>Administrator account settings are located under:</p>
+<pre><code class="language-text">admin/
+|
+`-- account-settings/
+    |
+    `-- page.jsx
+</code></pre>
+<p>This section provides functionality related to administrator account settings.</p>
+<p>Account-related requests are handled through the dashboard and communicated to the Bloom backend API.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       |
+
+Account Settings
+
+       |
+
+       | API Request
+
+       v
+
+Bloom Backend
+
+       |
+
+       v
+
+Administrator Account Data
+</code></pre>
+<hr />
+<h2 id="11-user-management">11. User Management</h2>
+<p>User management is located under:</p>
+<pre><code class="language-text">admin/
+|
+`-- users-management/
+    |
+    `-- page.jsx
+</code></pre>
+<p>This section allows authorized administrators to manage users within the Bloom platform.</p>
+<p>Administrators can perform user-management operations provided by the backend API.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       |
+
+Users Management
+
+       |
+
+       | API Request
+
+       v
+
+Bloom Backend
+
+       |
+
+       v
+
+User Data
+</code></pre>
+<p>User management may include viewing and managing user accounts according to the permissions provided to the administrator.</p>
+<hr />
+<h2 id="12-content-management">12. Content Management</h2>
+<p>Content management is located under:</p>
+<pre><code class="language-text">admin/
+|
+`-- content-management/
+</code></pre>
+<p>This section provides administrators with functionality for managing platform content.</p>
+<p>For example, administrators can manage maternal health tips and other content made available through the Bloom platform.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       |
+
+Content Management
+
+       |
+
+       | API Request
+
+       v
+
+Bloom Backend
+
+       |
+
+       v
+
+Platform Content
+</code></pre>
+<p>Content changes are handled through the backend API rather than directly through the database.</p>
+<hr />
+<h2 id="13-metrics">13. Metrics</h2>
+<p>The dashboard contains a metrics section.</p>
+<pre><code class="language-text">admin/
+|
+`-- metrics/
+    |
+    |-- growth-and-engagement/
+    |
+    `-- safety-alerts/
+</code></pre>
+<p>The metrics section provides administrators with information used to monitor the Bloom platform.</p>
+<p>The dashboard retrieves the relevant information through the Bloom backend API.</p>
+<hr />
+<h2 id="14-growth-and-engagement">14. Growth and Engagement</h2>
+<p>The growth and engagement section is located under:</p>
+<pre><code class="language-text">admin/
+|
+`-- metrics/
+    |
+    `-- growth-and-engagement/
+</code></pre>
+<p>This section provides information related to platform growth and user engagement.</p>
+<p>The dashboard communicates with the backend analytics functionality.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       |
+
+Growth and Engagement
+
+       |
+
+       | API Request
+
+       v
+
+Bloom Backend
+
+       |
+
+       |
+
+Analytics Service
+
+       |
+
+       v
+
+Analytics Data
+</code></pre>
+<p>The dashboard displays the information returned by the backend.</p>
+<hr />
+<h2 id="15-safety-alerts">15. Safety Alerts</h2>
+<p>The safety alerts section is located under:</p>
+<pre><code class="language-text">admin/
+|
+`-- metrics/
+    |
+    `-- safety-alerts/
+</code></pre>
+<p>This section provides administrators with safety-related information available through the platform.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       |
+
+Safety Alerts
+
+       |
+
+       | API Request
+
+       v
+
+Bloom Backend
+
+       |
+
+       v
+
+Safety-Related Data
+</code></pre>
+<p>The dashboard does not retrieve this information directly from PostgreSQL.</p>
+<hr />
+<h2 id="16-react-and-jsx-components">16. React and JSX Components</h2>
+<p>The dashboard uses React components written using JSX.</p>
+<p>For example, a simple dashboard page can be structured as:</p>
+<pre><code class="language-jsx">export default function UsersManagement() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Users Management&lt;/h1&gt;
+      &lt;p&gt;Manage Bloom users.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>React allows the dashboard interface to be divided into reusable components.</p>
+<p>For example:</p>
+<pre><code class="language-text">Dashboard
+
+   |
+
+   |-- Navigation Component
+
+   |-- Header Component
+
+   |-- User Management Component
+
+   |-- Content Management Component
+
+   `-- Metrics Components
+</code></pre>
+<p>This helps keep the frontend organized and makes individual parts of the interface easier to maintain.</p>
+<hr />
+<h2 id="17-fetching-data-from-the-backend">17. Fetching Data from the Backend</h2>
+<p>The dashboard retrieves data from the Bloom API using JavaScript.</p>
+<p>A simplified example is:</p>
+<pre><code class="language-javascript">async function getUsers() {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/users`
+  );
+
+  return await response.json();
+}
+</code></pre>
+<p>The returned data can then be displayed by a React component.</p>
+<pre><code class="language-text">Dashboard Page
+
+       |
+
+       | fetch()
+
+       v
+
+Bloom API
+
+       |
+
+       v
+
+Backend Service
+
+       |
+
+       v
+
+Database
+
+       |
+
+       v
+
+API Response
+
+       |
+
+       v
+
+React Component
+
+       |
+
+       v
+
+Dashboard UI
+</code></pre>
+<hr />
+<h2 id="18-styling">18. Styling</h2>
+<p>The administrative dashboard uses CSS to style the interface.</p>
+<p>Dashboard-specific CSS files are located alongside their related pages.</p>
+<p>For example:</p>
+<pre><code class="language-text">admin/
+|
+|-- account-settings/
+|   |-- page.jsx
+|   `-- account.module.css
+|
+|-- auth/
+|   `-- login/
+|       |-- page.jsx
+|       `-- login.module.css
+|
+|-- metrics/
+|   `-- safety-alerts/
+|       |-- page.jsx
+|       `-- safety.module.css
+|
+`-- users-management/
+    |-- page.jsx
+    `-- users-management.css
+</code></pre>
+<p>CSS is used to control the visual appearance and layout of the dashboard.</p>
+<p>This includes elements such as:</p>
+<ul>
+<li>Page layout</li>
+<li>Navigation</li>
+<li>Buttons</li>
+<li>Forms</li>
+<li>Tables</li>
+<li>Cards</li>
+<li>Metrics displays</li>
+<li>Spacing</li>
+<li>Typography</li>
+<li>Responsive layouts</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-css">.dashboardTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+</code></pre>
+<p>The styling is separated from the application logic so that the appearance of the dashboard can be maintained independently.</p>
+<hr />
+<h2 id="19-dashboard-and-backend-communication">19. Dashboard and Backend Communication</h2>
+<p>The general communication flow is:</p>
+<pre><code class="language-text">Administrative Dashboard
+
+       |
+
+       | API Request
+
+       v
+
+Bloom Backend
+
+       |
+
+       | Application Processing
+
+       v
+
+Backend Services
+
+       |
+
+       | Database Operations
+
+       v
+
+PostgreSQL
+
+       |
+
+       | API Response
+
+       v
+
+Administrative Dashboard
+</code></pre>
+<p>The backend is responsible for application logic, authentication, authorization, analytics, and database operations.</p>
+<p>The dashboard is responsible for presenting the administrative interface and sending requests to the backend.</p>
+<hr />
+<h2 id="20-database-access">20. Database Access</h2>
+<p>The administrative dashboard does not communicate directly with PostgreSQL.</p>
+<p>All database operations are performed by the Bloom backend.</p>
+<pre><code class="language-text">Admin Dashboard
+
+       |
+
+       |
+
+Bloom API
+
+       |
+
+       |
+
+Bloom Backend
+
+       |
+
+       |
+
+PostgreSQL
+</code></pre>
+<p>This separation prevents the database from being directly exposed to the frontend application.</p>
+<p>It also allows the backend to control authentication, authorization, validation, business logic, and database operations.</p>
+<hr />
+<h2 id="21-dashboard-security">21. Dashboard Security</h2>
+<p>The administrative dashboard is protected through the security mechanisms implemented by the Bloom backend.</p>
+<p>Administrative access uses authentication and role-based authorization.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       v
+
+Login
+
+       |
+
+       v
+
+Authentication
+
+       |
+
+       v
+
+Authorization
+
+       |
+
+       v
+
+Admin Dashboard
+
+       |
+
+       v
+
+Protected API Endpoints
+</code></pre>
+<p>The backend verifies that the authenticated user has the required administrator role before allowing access to protected administrative functionality.</p>
+<p>This helps prevent ordinary users from accessing administrator functionality.</p>
+<hr />
+<h2 id="22-dashboard-areas-and-backend-functionality">22. Dashboard Areas and Backend Functionality</h2>
+<p>The relationship between dashboard sections and backend functionality can be summarized as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Dashboard Area</th>
+<th>Related Functionality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authentication</td>
+<td>Administrator authentication</td>
+</tr>
+<tr>
+<td>Account Settings</td>
+<td>Administrator account functionality</td>
+</tr>
+<tr>
+<td>User Management</td>
+<td>User-related operations</td>
+</tr>
+<tr>
+<td>Content Management</td>
+<td>Platform content operations</td>
+</tr>
+<tr>
+<td>Growth and Engagement</td>
+<td>Analytics and engagement information</td>
+</tr>
+<tr>
+<td>Safety Alerts</td>
+<td>Safety-related information and alerts</td>
+</tr>
+</tbody>
+</table>
+<p>The dashboard acts as the administrative interface, while the Bloom backend provides the API and application services behind these features.</p>
+<hr />
+<h2 id="23-local-development">23. Local Development</h2>
+<p>During development, the Next.js dashboard can be run locally.</p>
+<p>The project uses the environment configuration to connect the local dashboard to the Bloom backend API.</p>
+<pre><code class="language-text">Local Next.js Dashboard
+
+       |
+
+       | API URL from .env.local
+
+       v
+
+Bloom Backend API
+
+       |
+
+       v
+
+PostgreSQL
+</code></pre>
+<p>The environment configuration contains values such as:</p>
+<pre><code class="language-text">NEXT_PUBLIC_API_URL=&quot;https://bloom-8db38d59208f.herokuapp.com&quot;
+</code></pre>
+<p>The local development environment allows the dashboard to be tested before deployment to Vercel.</p>
+<hr />
+<h2 id="24-vercel-deployment">24. Vercel Deployment</h2>
+<p>The administrative dashboard is deployed using Vercel.</p>
+<p>The general deployment process is:</p>
+<pre><code class="language-text">Next.js Source Code
+
+       |
+
+       v
+
+Git Repository
+
+       |
+
+       v
+
+Vercel
+
+       |
+
+       | Build
+
+       v
+
+Next.js Production Application
+
+       |
+
+       v
+
+Hosted Dashboard
+</code></pre>
+<p>During deployment, Vercel builds the Next.js application and hosts the resulting production application.</p>
+<p>The required environment variables should be configured in the Vercel project settings.</p>
+<p>For example:</p>
+<pre><code class="language-text">NEXT_PUBLIC_API_URL
+</code></pre>
+<p>should point to the deployed Bloom backend API.</p>
+<hr />
+<h2 id="25-hosted-dashboard">25. Hosted Dashboard</h2>
+<p>The production Bloom administrative dashboard is hosted on Vercel.</p>
+<p>The production URL should be documented here:</p>
+<pre><code class="language-text">Bloom Administrative Dashboard:
+
+[ADD YOUR VERCEL HOSTED DASHBOARD LINK HERE]
+</code></pre>
+<p>For example:</p>
+<pre><code class="language-text">https://bloom-dashboard.vercel.app
+</code></pre>
+<p>The exact URL should be replaced with the actual Vercel deployment URL.</p>
+<p>The hosted dashboard communicates with the deployed Bloom backend through the configured API URL.</p>
+<pre><code class="language-text">Administrator
+
+       |
+
+       |
+
+Vercel Hosted Dashboard
+
+       |
+
+       | HTTPS API Requests
+
+       v
+
+Bloom Backend API
+
+       |
+
+       | Database Operations
+
+       v
+
+PostgreSQL
+</code></pre>
+<hr />
+<h2 id="26-deployment-and-configuration-summary">26. Deployment and Configuration Summary</h2>
+<p>The Bloom administrative dashboard uses Next.js and React for the frontend application.</p>
+<p>The dashboard is connected to the Bloom backend through the API using the configured environment variables.</p>
+<p>The production application is deployed and hosted using Vercel.</p>
+<pre><code class="language-text">Next.js / React
+
+       |
+
+       | Environment Configuration
+
+       v
+
+Vercel
+
+       |
+
+       | HTTPS
+
+       v
+
+Bloom Backend API
+
+       |
+
+       v
+
+PostgreSQL
+</code></pre>
+<p>This architecture keeps the frontend, backend, and database separated while allowing the dashboard to securely communicate with the Bloom platform services.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

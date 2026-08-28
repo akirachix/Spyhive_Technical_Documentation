@@ -10,13 +10,21 @@ Client applications do not connect directly to PostgreSQL. Database access is ha
 
 ```text
 Bloom Mobile Application
+
        |
+
        | API requests
+
        |
+
    Bloom Backend
+
        |
+
        | Database operations
+
        |
+
    PostgreSQL
 ```
 
@@ -24,13 +32,21 @@ The administrative dashboard follows the same approach:
 
 ```text
 Administrative Dashboard
+
        |
+
        | API requests
+
        |
+
    Bloom Backend
+
        |
+
        | Database operations
+
        |
+
    PostgreSQL
 ```
 
@@ -41,6 +57,8 @@ Administrative Dashboard
 The following ERD shows the main database entities and their relationships.
 
 ![Bloom Database ERD](assets/erd.png)
+
+---
 
 ## 3. Database Access
 
@@ -54,17 +72,29 @@ The general flow is:
 
 ```text
 API Request
+
        |
+
        |
+
      Router
+
        |
+
        |
+
     Service
+
        |
+
        |
+
    Database
+
        |
+
        |
+
    PostgreSQL
 ```
 
@@ -72,19 +102,137 @@ This keeps database access within the backend rather than exposing the database 
 
 ---
 
-## 4. Main Data Areas
+## 4. SQL Operations
+
+PostgreSQL is used to store and retrieve Bloom application data. The backend can perform common SQL operations such as `SELECT`, `INSERT INTO`, `UPDATE`, and `DELETE`.
+
+### SELECT
+
+The `SELECT` statement is used to retrieve data from a table.
+
+```sql
+SELECT *
+FROM users;
+```
+
+To retrieve specific columns:
+
+```sql
+SELECT id, email, role
+FROM users;
+```
+
+### WHERE
+
+The `WHERE` clause is used to filter records.
+
+```sql
+SELECT *
+FROM users
+WHERE role = 'mother';
+```
+
+Another example using a maternal profile:
+
+```sql
+SELECT *
+FROM maternal_profiles
+WHERE user_id = 1;
+```
+
+### INSERT INTO
+
+The `INSERT INTO` statement is used to add a new record.
+
+```sql
+INSERT INTO users (email, role)
+VALUES ('mother@example.com', 'mother');
+```
+
+### UPDATE
+
+The `UPDATE` statement is used to modify existing records.
+
+```sql
+UPDATE users
+SET role = 'caregiver'
+WHERE id = 1;
+```
+
+### DELETE
+
+The `DELETE` statement is used to remove a record.
+
+```sql
+DELETE FROM users
+WHERE id = 1;
+```
+
+### ORDER BY
+
+`ORDER BY` is used to sort query results.
+
+```sql
+SELECT *
+FROM symptom_log_items
+ORDER BY created_at DESC;
+```
+
+### LIMIT
+
+`LIMIT` restricts the number of records returned.
+
+```sql
+SELECT *
+FROM maternal_profiles
+LIMIT 10;
+```
+
+### COUNT
+
+`COUNT` can be used to calculate the number of records.
+
+```sql
+SELECT COUNT(*) AS total_users
+FROM users;
+```
+
+### JOIN
+
+`JOIN` can be used to retrieve related information from multiple tables.
+
+```sql
+SELECT users.email, maternal_profiles.id
+FROM users
+JOIN maternal_profiles
+    ON users.id = maternal_profiles.user_id;
+```
+
+These SQL operations are handled by the backend database layer rather than being executed directly by the mobile application or administrative dashboard.
+
+---
+
+## 5. Main Data Areas
 
 The Bloom backend contains models for the main types of information used by the platform.
 
 ```text
 Database
+
 |
+
 |-- Users
+
 |-- Locations
+
 |-- Maternal Profiles
+
 |-- Symptoms
+
 |-- Symptom Log Items
+
 |-- Care Schedules
+
 \-- Maternal Health Tips
 ```
 
@@ -92,7 +240,7 @@ These areas correspond to the database models in the backend.
 
 ---
 
-## 5. User Data
+## 6. User Data
 
 User information is represented by the `user.py` model.
 
@@ -102,20 +250,29 @@ User-related operations are exposed through the user router and handled through 
 
 ```text
 User Request
+
        |
+
        |
+
    user.py
+
        |
+
        |
+
 user_service.py
+
        |
+
        |
+
    Database
 ```
 
 ---
 
-## 6. Location Data
+## 7. Location Data
 
 Location information is represented by the `location.py` model.
 
@@ -127,20 +284,29 @@ Location-related requests are handled through the location router and location s
 
 ```text
 Location Request
+
        |
+
        |
+
  location.py
+
        |
+
        |
+
 location_service.py
+
        |
+
        |
+
    Database
 ```
 
 ---
 
-## 7. Maternal Profile Data
+## 8. Maternal Profile Data
 
 Maternal profile information is represented by the `maternal_profile.py` model.
 
@@ -150,20 +316,29 @@ Maternal profile operations are handled through the maternal profile router and 
 
 ```text
 Maternal Profile Request
+
        |
+
        |
+
 maternal_profile.py
+
        |
+
        |
+
 maternal_profile_service.py
+
        |
+
        |
+
     Database
 ```
 
 ---
 
-## 8. Symptom Data
+## 9. Symptom Data
 
 Bloom separates symptom information from individual symptom log entries.
 
@@ -173,11 +348,17 @@ The corresponding routers and services handle these two areas.
 
 ```text
 Symptom Information
+
        |
+
        |
+
    symptom.py
+
        |
+
        |
+
  symptom_service.py
 ```
 
@@ -185,11 +366,17 @@ Individual symptom log entries follow:
 
 ```text
 Symptom Log Entry
+
        |
+
        |
+
 symptom_log_item.py
+
        |
+
        |
+
 symptom_log_item_service.py
 ```
 
@@ -197,7 +384,7 @@ The resulting data is stored through the backend's database layer.
 
 ---
 
-## 9. Care Schedule Data
+## 10. Care Schedule Data
 
 Care schedule information is represented by the `care_schedule.py` model.
 
@@ -205,14 +392,23 @@ Care schedule operations are handled through the care schedule router and servic
 
 ```text
 Care Schedule Request
+
        |
+
        |
+
 care_schedule.py
+
        |
+
        |
+
 care_schedule_service.py
+
        |
+
        |
+
     Database
 ```
 
@@ -220,7 +416,7 @@ This allows care schedule information to be managed through the Bloom API.
 
 ---
 
-## 10. Maternal Health Tips
+## 11. Maternal Health Tips
 
 Maternal health tip information is represented by the `maternal_tip.py` model.
 
@@ -228,26 +424,37 @@ The corresponding router and service provide the API and application logic for m
 
 ```text
 Maternal Tip Request
+
        |
+
        |
+
 maternal_tip.py
+
        |
+
        |
+
 maternal_tip_service.py
+
        |
+
        |
+
     Database
 ```
 
 ---
 
-## 11. Analytics Data
+## 12. Analytics Data
 
 Analytics functionality is handled by the backend through:
 
 ```text
 routers/
+
 |
+
 \-- analytics.py
 ```
 
@@ -255,7 +462,9 @@ and:
 
 ```text
 services/
+
 |
+
 \-- analytics_service.py
 ```
 
@@ -265,19 +474,27 @@ The administrative dashboard communicates with the backend API when accessing an
 
 ---
 
-## 12. Database Models
+## 13. Database Models
 
 The database models currently documented in the backend are:
 
 ```text
 models/
+
 |
+
 |-- user.py
+
 |-- location.py
+
 |-- maternal_profile.py
+
 |-- symptom.py
+
 |-- symptom_log_item.py
+
 |-- care_schedule.py
+
 \-- maternal_tip.py
 ```
 
@@ -287,7 +504,7 @@ The models are part of the backend's data layer and are used when working with i
 
 ---
 
-## 13. Data Access Flow
+## 14. Data Access Flow
 
 Bloom uses the backend as the central point for database access.
 
@@ -295,17 +512,29 @@ For mobile users:
 
 ```text
 Mother / Caregiver / CHP
+
        |
+
        |
+
    Mobile App
+
        |
+
        |
+
    Bloom API
+
        |
+
        |
+
    Backend
+
        |
+
        |
+
  PostgreSQL
 ```
 
@@ -313,17 +542,29 @@ For administrators:
 
 ```text
 Administrator
+
        |
+
        |
+
 Admin Dashboard
+
        |
+
        |
+
    Bloom API
+
        |
+
        |
+
    Backend
+
        |
+
        |
+
  PostgreSQL
 ```
 
@@ -331,7 +572,7 @@ This means that database operations are handled by the backend regardless of whi
 
 ---
 
-## 14. Database Configuration
+## 15. Database Configuration
 
 Database configuration is handled by the backend.
 
@@ -343,7 +584,7 @@ Sensitive database credentials should not be committed to the repository.
 
 ---
 
-## 15. Database and API Separation
+## 16. Database and API Separation
 
 The PostgreSQL database is not exposed directly to the mobile application or administrative dashboard.
 
@@ -351,31 +592,32 @@ Instead, requests pass through the backend API.
 
 ```text
 Mobile Application
+
        |
+
        |
+
 Administrative Dashboard
+
        |
+
        |
+
    Bloom API
+
        |
+
        |
+
    Backend
+
        |
+
        |
+
    PostgreSQL
 ```
 
 This keeps database operations within the backend and provides a single point through which application data is accessed and managed.
 
 ---
-
-## 116. Related Documentation
-
-- [Getting Started](getting-started.md)
-- [System Architecture](architecture.md)
-- [Backend API](backend-api.md)
-- [Mobile Application](mobile.md)
-- [Administrative Dashboard](frontend-web.md)
-- [Security](security.md)
-- [Integrations](integrations.md)
-- [Deployment](deployment.md)

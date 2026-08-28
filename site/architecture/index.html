@@ -1,0 +1,1424 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation for the Bloom maternal health platform">
+      
+      
+        <meta name="author" content="Bloom Team">
+      
+      
+      
+        <link rel="prev" href="../informational-website/">
+      
+      
+        <link rel="next" href="../backend-api/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Architecture - Bloom Technical Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bloom-system-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bloom Technical Documentation" class="md-header__button md-logo" aria-label="Bloom Technical Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bloom Technical Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bloom Technical Documentation" class="md-nav__button md-logo" aria-label="Bloom Technical Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Bloom Technical Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../informational-website/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informational Website
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-system-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. System Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. System Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-mobile-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Mobile Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-administrative-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Administrative Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-backend-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Backend API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-postgresql-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 PostgreSQL Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-informational-website" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Informational Website
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-the-components-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How the Components Connect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-backend-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Backend Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-mobile-api-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Mobile API Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dashboard-api-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dashboard API Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-user-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. User Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-location-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Location Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-maternal-information-and-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Maternal Information and Alerts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-architecture-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Architecture Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Architecture Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separation of Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centralized-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-based-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role-Based Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centralized-data-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized Data Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modular-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modular Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backend-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frontend-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA & Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Architecture Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-system-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. System Components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. System Components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-mobile-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Mobile Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-administrative-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Administrative Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-backend-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Backend API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-postgresql-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 PostgreSQL Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-informational-website" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Informational Website
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-the-components-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How the Components Connect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-backend-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Backend Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-mobile-api-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Mobile API Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-dashboard-api-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Dashboard API Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-user-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. User Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-location-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Location Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-maternal-information-and-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Maternal Information and Alerts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-architecture-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Architecture Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Architecture Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#separation-of-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Separation of Responsibilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centralized-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#role-based-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Role-Based Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centralized-data-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized Data Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modular-backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modular Backend
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="bloom-system-architecture">Bloom System Architecture</h1>
+<p><img alt="Bloom System Architecture" src="../assets/sad.png" /></p>
+<h2 id="1-architecture-overview">1. Architecture Overview</h2>
+<p>Bloom uses a client-server architecture. The mobile application and administrative dashboard communicate with the Bloom backend through APIs, while the backend handles communication with the PostgreSQL database.</p>
+<p>The Bloom platform consists of:</p>
+<ul>
+<li><strong>Bloom Mobile Application</strong></li>
+<li><strong>Bloom Administrative Dashboard</strong></li>
+<li><strong>Bloom Backend API</strong></li>
+<li><strong>PostgreSQL Database</strong></li>
+<li><strong>Bloom Informational Website</strong></li>
+</ul>
+<p>The mobile application is used by mothers, caregivers, and Community Health Promoters (CHPs). The administrative dashboard is used by administrators to manage and monitor the platform.</p>
+<hr />
+<h2 id="2-system-components">2. System Components</h2>
+<h3 id="21-mobile-application">2.1 Mobile Application</h3>
+<p>The Bloom mobile application provides role-specific functionality for mothers, caregivers, and Community Health Promoters.</p>
+<p>The application communicates with the backend through the API and includes functionality such as:</p>
+<ul>
+<li>User authentication</li>
+<li>Maternal profile management</li>
+<li>Daily symptom logging</li>
+<li>Maternal health recommendations</li>
+<li>Care scheduling</li>
+<li>Reminders</li>
+<li>Delivery date tracking</li>
+<li>Location functionality</li>
+<li>Caregiver functionality</li>
+<li>CHP functionality</li>
+<li>Maternal health tips</li>
+<li>Alerts and notifications</li>
+</ul>
+<p>The mobile application does not connect directly to the PostgreSQL database. Data is exchanged through the backend API.</p>
+<hr />
+<h3 id="22-administrative-dashboard">2.2 Administrative Dashboard</h3>
+<p>The administrative dashboard is the web interface used by Bloom administrators.</p>
+<p>The dashboard currently contains the following areas:</p>
+<pre><code class="language-text">admin/
+│
+├── account-settings/
+│
+├── auth/
+│   └── login/
+│
+├── content-management/
+│
+├── metrics/
+│   ├── growth-and-engagement/
+│   └── safety-and-alerts/
+│
+└── users-management/
+</code></pre>
+<p>The dashboard communicates with the backend API for the data and operations required by these areas.</p>
+<hr />
+<h3 id="23-backend-api">2.3 Backend API</h3>
+<p>The Bloom backend is built with <strong>FastAPI</strong> and provides the API layer for the mobile application and administrative dashboard.</p>
+<p>The backend handles:</p>
+<ul>
+<li>API requests</li>
+<li>Authentication and authorization</li>
+<li>User management</li>
+<li>Maternal profile management</li>
+<li>Symptom management and logging</li>
+<li>Care schedules</li>
+<li>Maternal health tips</li>
+<li>Location management</li>
+<li>Analytics</li>
+<li>Database operations</li>
+<li>Email functionality</li>
+<li>Distance calculations</li>
+<li>Security and request handling</li>
+</ul>
+<p>The backend communicates with PostgreSQL for persistent data storage.</p>
+<p>The detailed backend structure and API functionality are documented in <a href="../backend-api/">Backend API</a>.</p>
+<hr />
+<h3 id="24-postgresql-database">2.4 PostgreSQL Database</h3>
+<p>Bloom uses <strong>PostgreSQL</strong> for persistent data storage.</p>
+<p>The database contains information used by the platform, including:</p>
+<ul>
+<li>Users</li>
+<li>Maternal profiles</li>
+<li>Locations</li>
+<li>Symptoms</li>
+<li>Symptom log items</li>
+<li>Care schedules</li>
+<li>Maternal health tips</li>
+<li>Data used for analytics</li>
+</ul>
+<p>The backend is responsible for database access. The mobile application and administrative dashboard do not access PostgreSQL directly.</p>
+<p>More information about the database is available in <a href="../database/">Database</a>.</p>
+<hr />
+<h3 id="25-informational-website">2.5 Informational Website</h3>
+<p>The Bloom informational website is the public-facing website for the project.</p>
+<p>It provides information about Bloom, its purpose, and the services provided by the platform.</p>
+<p>The informational website is separate from the authenticated administrative dashboard and the Bloom mobile application.</p>
+<p><strong>Informational Website:</strong></p>
+<p><a href="https://bloom-rho-sand.vercel.app/">Visit the Bloom Informational Website →</a></p>
+<hr />
+<h2 id="3-how-the-components-connect">3. How the Components Connect</h2>
+<p>The main communication path within Bloom is:</p>
+<pre><code class="language-text">Bloom Mobile Application
+          │
+          │ API requests
+     Bloom Backend
+          │
+          │ Database operations
+      PostgreSQL
+</code></pre>
+<p>The administrative dashboard uses the same backend:</p>
+<pre><code class="language-text">Administrative Dashboard
+          │
+          │ API requests
+     Bloom Backend
+          │
+          │ Database operations
+      PostgreSQL
+</code></pre>
+<p>The informational website is publicly accessible and operates separately from the authenticated applications.</p>
+<hr />
+<h2 id="4-backend-architecture">4. Backend Architecture</h2>
+<p>The backend is organized into separate areas for API routes, application logic, data access, schemas, and database models.</p>
+<p>At a high level:</p>
+<pre><code class="language-text">API Request
+    │
+  Router
+    │
+  Service
+    │
+Repository / Database
+    │
+PostgreSQL
+</code></pre>
+<p>This structure keeps the API routes separate from the application logic and database access.</p>
+<p>The backend also contains shared functionality for configuration, security, rate limiting, email functionality, distance calculations, and dependencies.</p>
+<p>The complete backend file structure is documented in <a href="../backend-api/">Backend API</a>.</p>
+<hr />
+<h2 id="5-mobile-api-integration">5. Mobile API Integration</h2>
+<p>The mobile application uses the Bloom API to communicate with the backend.</p>
+<p>API integration is used for operations including:</p>
+<ul>
+<li>Authentication</li>
+<li>User information</li>
+<li>Maternal profile creation and updates</li>
+<li>Symptom logging</li>
+<li>Symptom information</li>
+<li>Care schedules</li>
+<li>Maternal health tips</li>
+<li>Location information</li>
+<li>Alerts and relevant maternal information</li>
+</ul>
+<p>The mobile application's API services handle communication between the Flutter application and the backend.</p>
+<p>Further details about the mobile application are available in <a href="../mobile/">Mobile Application</a>.</p>
+<hr />
+<h2 id="6-dashboard-api-integration">6. Dashboard API Integration</h2>
+<p>The administrative dashboard communicates with the Bloom backend through the API.</p>
+<p>The API supports dashboard functionality including:</p>
+<ul>
+<li>Administrator authentication</li>
+<li>User management</li>
+<li>Content management</li>
+<li>Growth and engagement metrics</li>
+<li>Safety and alerts</li>
+<li>Account settings</li>
+</ul>
+<p>The dashboard does not access the database directly.</p>
+<p>Further details are available in <a href="../frontend-web/">Administrative Dashboard</a>.</p>
+<hr />
+<h2 id="7-user-data-flow">7. User Data Flow</h2>
+<p>For mobile users, the general flow is:</p>
+<pre><code class="language-text">Mother / Caregiver / CHP
+          │
+     Mobile App
+          │
+     Bloom API
+          │
+     PostgreSQL
+</code></pre>
+<p>For administrators:</p>
+<pre><code class="language-text">Administrator
+      │
+Admin Dashboard
+      │
+  Bloom API
+      │
+  PostgreSQL
+</code></pre>
+<p>This provides a single backend layer through which application data is processed and stored.</p>
+<hr />
+<h2 id="8-location-data">8. Location Data</h2>
+<p>Location functionality is handled through the backend API.</p>
+<p>The general flow is:</p>
+<pre><code class="language-text">Mobile Application
+        │
+        │ Location data
+   Location API
+        │
+ Location Service
+        │
+    Database
+</code></pre>
+<p>The backend also contains distance calculation functionality used where location-based calculations are required.</p>
+<hr />
+<h2 id="9-maternal-information-and-alerts">9. Maternal Information and Alerts</h2>
+<p>Maternal information entered through the mobile application is sent to the backend for processing and storage.</p>
+<p>For example, symptom information follows the general flow:</p>
+<pre><code class="language-text">Mother
+  │
+  │ Records symptoms
+Mobile Application
+  │
+  │ API request
+Bloom Backend
+  │
+  ├── Symptom processing
+  ├── Maternal data processing
+  └── Relevant alert information
+  │
+PostgreSQL
+</code></pre>
+<p>Relevant information can then be made available to authorized users through the appropriate application functionality.</p>
+<hr />
+<hr />
+<h2 id="10-architecture-principles">10. Architecture Principles</h2>
+<h3 id="separation-of-responsibilities">Separation of Responsibilities</h3>
+<p>The mobile application, dashboard, backend, and database each have their own responsibilities.</p>
+<h3 id="centralized-api">Centralized API</h3>
+<p>The mobile application and dashboard communicate with the backend through APIs rather than connecting directly to the database.</p>
+<h3 id="role-based-access">Role-Based Access</h3>
+<p>Bloom provides different functionality for mothers, caregivers, CHPs, and administrators.</p>
+<h3 id="centralized-data-storage">Centralized Data Storage</h3>
+<p>Application data is stored in PostgreSQL and accessed through the backend.</p>
+<h3 id="modular-backend">Modular Backend</h3>
+<p>The backend separates routers, services, repositories, schemas, and models so that different parts of the application can be maintained independently.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

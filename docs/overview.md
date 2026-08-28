@@ -1,15 +1,19 @@
+
 # Bloom Platform Overview
 
-## 1. Introduction
+## 1. Platform Overview
 
-Bloom is a maternal health platform designed to support mothers throughout pregnancy while connecting them with caregivers and Community Health Promoters (CHPs).
+Bloom is a connected maternal health platform that brings together the mobile application, backend API, administrative dashboard, and informational website.
 
-The platform consists of three primary software components:
+The platform follows a client-server architecture where client applications communicate with the backend API, while the backend manages application logic, authentication, data processing, and communication with the PostgreSQL database.
 
-- **Bloom Mobile Application** - Flutter-based application used by mothers, caregivers, and CHPs.
+The main platform components are:
+
+- **Bloom Mobile Application** - Flutter-based application used by mothers, caregivers, and Community Health Promoters (CHPs).
 - **Bloom Backend API** - FastAPI-based backend responsible for application logic, data processing, authentication, and communication with the database.
 - **Bloom Administrative Dashboard** - Web-based interface used by administrators to manage users, maternal health content, platform metrics, safety alerts, and account settings.
 - **Bloom Informational Website** - Public website that provides information about Bloom, its purpose, features, and maternal health support services.
+
 These components communicate through APIs to provide a connected maternal health ecosystem.
 
 ---
@@ -82,12 +86,14 @@ The dashboard contains the following major areas:
 
 The dashboard communicates with the backend API to retrieve and update platform information.
 
+---
+
 ### Informational Website
 
 The Bloom informational website provides publicly accessible information about the Bloom platform, its purpose, features and maternal health support services.
 
 The website serves as the public-facing information resource for Bloom and is separate from the authenticated administrative dashboard and mobile application.
- 
+
 **Informational Website:**  
 
 [Visit the Bloom Informational Website →](https://bloom-rho-sand.vercel.app/)
@@ -156,7 +162,6 @@ Administrator functionality includes:
 
 ---
 
-
 ## 4. Core Platform Modules
 
 The Bloom platform is organized around several functional modules.
@@ -184,24 +189,41 @@ The general request flow is:
 
 ```text
 Client Application
+
        │
+
        │ HTTP Request
+
    Backend API
+
        │
+
        ├── Authentication
+
        │
+
        ├── Validation
+
        │
+
        ├── Business Logic
+
        │
+
        └── Database Operation
+
               │
+
           PostgreSQL
+
               │
+
        Backend Response
+
               │
+
        Client Application
-```
+````
 
 This architecture allows the client applications to access centralized application functionality without directly communicating with the database.
 
@@ -213,14 +235,14 @@ Bloom uses PostgreSQL as its primary database.
 
 Persistent application data includes information associated with:
 
-- Users
-- Maternal profiles
-- Locations
-- Symptoms
-- Symptom logs
-- Care schedules
-- Maternal health tips
-- Analytics-related information
+* Users
+* Maternal profiles
+* Locations
+* Symptoms
+* Symptom logs
+* Care schedules
+* Maternal health tips
+* Analytics-related information
 
 The backend is responsible for interacting with the database and exposing the required information through API endpoints.
 
@@ -234,16 +256,16 @@ The mobile application and administrative dashboard are integrated with the Bloo
 
 API integration allows client applications to:
 
-- Submit user information
-- Retrieve user information
-- Create and update maternal profiles
-- Submit and retrieve symptom information
-- Manage symptom logs
-- Manage care schedules
-- Retrieve maternal health tips
-- Exchange relevant location information
-- Retrieve analytics information
-- Retrieve alerts and other platform information
+* Submit user information
+* Retrieve user information
+* Create and update maternal profiles
+* Submit and retrieve symptom information
+* Manage symptom logs
+* Manage care schedules
+* Retrieve maternal health tips
+* Exchange relevant location information
+* Retrieve analytics information
+* Retrieve alerts and other platform information
 
 The API therefore serves as the primary communication layer between the client applications and backend services.
 
@@ -254,36 +276,22 @@ The API therefore serves as the primary communication layer between the client a
 At a high level, Bloom follows a client-server architecture consisting of:
 
 1. **Presentation Layer**
-   - Bloom Mobile Application
-   - Bloom Administrative Dashboard
+
+   * Bloom Mobile Application
+   * Bloom Administrative Dashboard
 
 2. **Application Layer**
-   - Bloom FastAPI Backend
-   - API routers
-   - Services
-   - Repositories
-   - Application configuration and security
+
+   * Bloom FastAPI Backend
+   * API routers
+   * Services
+   * Repositories
+   * Application configuration and security
 
 3. **Data Layer**
-   - PostgreSQL database
+
+   * PostgreSQL database
 
 The separation of these layers allows the different parts of the platform to be developed and maintained independently while communicating through defined APIs.
 
 ---
-
-## 9. Related Documentation
-
-For implementation-specific details, refer to:
-
-- [Getting Started](getting-started.md)
-- [Architecture](architecture.md)
-- [Backend API](backend-api.md)
-- [Database](database.md)
-- [Mobile Application](mobile.md)
-- [Administrative Dashboard](frontend-web.md)
-- [Security](security.md)
-- [Deployment](deployment.md)
-- [Integrations](integrations.md)
-- [Code Standards](code-standards.md)
-- [Testing](testing.md)
-- [Glossary](glossary.md)

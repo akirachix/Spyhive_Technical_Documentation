@@ -1,0 +1,4208 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical documentation for the Bloom maternal health platform">
+      
+      
+        <meta name="author" content="Bloom Team">
+      
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../database/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Backend - Bloom Technical Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bloom Technical Documentation" class="md-header__button md-logo" aria-label="Bloom Technical Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bloom Technical Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Backend
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bloom Technical Documentation" class="md-nav__button md-logo" aria-label="Bloom Technical Documentation" data-md-component="logo">
+      
+  <img src="../assets/logo.png" alt="logo">
+
+    </a>
+    Bloom Technical Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../informational-website/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Informational Website
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Technology Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Technology Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Technologies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-python-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Python Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Python Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. FastAPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. FastAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-fastapi-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running FastAPI Locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-api-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. API Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. API Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#router-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Router Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. API Communication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-api-http-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. API HTTP Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-api-endpoint-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. API Endpoint Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. API Endpoint Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maternal-profile-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maternal Profile API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symptom-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symptom-log-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom Log API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#care-schedule-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Care Schedule API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maternal-health-tips-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maternal Health Tips API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analytics API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-request-and-response-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Request and Response Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-postgresql-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. PostgreSQL Database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-sqlalchemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. SQLAlchemy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-sqlalchemy-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. SQLAlchemy Data Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. SQLAlchemy Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UUID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#float" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Float
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DateTime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ARRAY
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-database-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Database Relationships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cascade-and-referential-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Cascade and Referential Integrity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-database-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Database Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Database Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maternal-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maternal Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symptom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symptom-log-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom Log Item
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#care-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Care Schedule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maternal-health-tip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maternal Health Tip
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-authentication-and-user-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Authentication and User Roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-user-account-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. User Account Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-maternal-profile-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Maternal Profile Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-symptom-risk-and-alert-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Symptom Risk and Alert States
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-care-schedule-and-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Care Schedule and Reminders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-environment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Environment Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Database Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-api-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. API Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-api-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. API Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="24. API Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postman
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swagger-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swagger UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-api-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. API Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-api-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. API Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-backend-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        27. Backend Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-backend-and-client-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        28. Backend and Client Separation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-backend-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29. Backend Deployment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="29. Backend Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heroku-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heroku Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30-local-backend-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        30. Local Backend Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="30. Local Backend Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Clone the repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-a-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Create a virtual environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-install-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Install dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-configure-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Configure environment variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-configure-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Configure PostgreSQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-start-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — Start FastAPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-open-api-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Open API documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-database-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        31. Database Development Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-api-endpoint-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        32. API Endpoint Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-development-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        33. Development Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="33. Development Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34. Security Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-backend-testing-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35. Backend Testing Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        36. Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="36. Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastapi-does-not-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FastAPI does not start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-connection-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database connection fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-validation-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API validation error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-not-visible-in-swagger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint not visible in Swagger
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37. Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mobile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mobile
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frontend-web/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dashboard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QA & Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-technology-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Technology Stack
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Technology Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-technologies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Technologies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-python-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Python Configuration
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Python Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. FastAPI
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. FastAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-fastapi-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running FastAPI Locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-api-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. API Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. API Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#router-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Router Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-api-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. API Communication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-api-http-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. API HTTP Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-api-endpoint-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. API Endpoint Groups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. API Endpoint Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maternal-profile-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maternal Profile API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symptom-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symptom-log-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom Log API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#care-schedule-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Care Schedule API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maternal-health-tips-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maternal Health Tips API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#analytics-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analytics API
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-request-and-response-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Request and Response Validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-postgresql-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. PostgreSQL Database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-sqlalchemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. SQLAlchemy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-sqlalchemy-data-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. SQLAlchemy Data Types
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. SQLAlchemy Data Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uuid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UUID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#float" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Float
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boolean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boolean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DateTime
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#array" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ARRAY
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-database-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Database Relationships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cascade-and-referential-integrity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Cascade and Referential Integrity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-database-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Database Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Database Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maternal-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maternal Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symptom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symptom-log-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom Log Item
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#care-schedule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Care Schedule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maternal-health-tip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Maternal Health Tip
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-authentication-and-user-roles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Authentication and User Roles
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-user-account-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. User Account Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-maternal-profile-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. Maternal Profile Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-symptom-risk-and-alert-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. Symptom Risk and Alert States
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-care-schedule-and-reminders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. Care Schedule and Reminders
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-environment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. Environment Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-database-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. Database Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-api-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        23. API Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-api-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        24. API Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="24. API Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Postman
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#swagger-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Swagger UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-api-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25. API Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-api-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        26. API Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-backend-project-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        27. Backend Project Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-backend-and-client-separation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        28. Backend and Client Separation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-backend-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29. Backend Deployment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="29. Backend Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heroku-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heroku Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30-local-backend-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        30. Local Backend Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="30. Local Backend Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-clone-the-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Clone the repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-a-virtual-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Create a virtual environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-install-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Install dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-configure-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Configure environment variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-configure-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5 — Configure PostgreSQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-start-fastapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6 — Start FastAPI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-open-api-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 7 — Open API documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-database-development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        31. Database Development Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-api-endpoint-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        32. API Endpoint Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-development-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        33. Development Practices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="33. Development Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#routers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-security-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34. Security Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-backend-testing-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35. Backend Testing Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        36. Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="36. Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fastapi-does-not-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FastAPI does not start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-connection-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database connection fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-validation-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API validation error
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#endpoint-not-visible-in-swagger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint not visible in Swagger
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37. Related Documentation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Backend</h1>
+
+<h2 id="1-overview">1. Overview</h2>
+<p>The Bloom backend is the central application layer that connects the Bloom client applications to the database and provides the API used by the platform.</p>
+<p>The backend is responsible for:</p>
+<ul>
+<li>Exposing REST API endpoints.</li>
+<li>Receiving requests from the mobile application and administrative dashboard.</li>
+<li>Validating incoming request data.</li>
+<li>Applying application and business logic.</li>
+<li>Authenticating and authorizing users.</li>
+<li>Managing user roles and permissions.</li>
+<li>Creating, reading, updating, and deleting application data.</li>
+<li>Communicating with the PostgreSQL database.</li>
+<li>Managing maternal profiles and pregnancy information.</li>
+<li>Managing symptoms and symptom logs.</li>
+<li>Managing care schedules and reminders.</li>
+<li>Providing maternal health information.</li>
+<li>Providing location-related functionality.</li>
+<li>Providing analytics functionality.</li>
+<li>Handling integrations and background operations where implemented.</li>
+<li>Returning structured API responses to client applications.</li>
+</ul>
+<p>The backend acts as the single access point between the client applications and PostgreSQL.</p>
+<pre><code class="language-text">Bloom Mobile Application
+        |
+        | HTTP / REST API requests
+        |
+        v
+   Bloom Backend
+        |
+        | SQLAlchemy
+        |
+        v
+   PostgreSQL Database
+````
+
+The administrative dashboard follows the same architecture:
+
+```text
+Administrative Dashboard
+        |
+        | HTTP / REST API requests
+        |
+        v
+   Bloom Backend
+        |
+        | SQLAlchemy
+        |
+        v
+   PostgreSQL Database
+</code></pre>
+<p>Client applications do not connect directly to PostgreSQL.</p>
+<hr />
+<h2 id="2-technology-stack">2. Technology Stack</h2>
+<p>The backend is built using Python and a set of Python libraries and frameworks that provide the API, database access, validation, authentication, and supporting functionality.</p>
+<h3 id="main-technologies">Main Technologies</h3>
+<table>
+<thead>
+<tr>
+<th>Technology</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Python</strong></td>
+<td>Primary backend programming language</td>
+</tr>
+<tr>
+<td><strong>FastAPI</strong></td>
+<td>Web framework used to create the REST API</td>
+</tr>
+<tr>
+<td><strong>Pydantic</strong></td>
+<td>Request and response data validation</td>
+</tr>
+<tr>
+<td><strong>SQLAlchemy</strong></td>
+<td>Object-relational mapper used to communicate with PostgreSQL</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>Primary relational database</td>
+</tr>
+<tr>
+<td><strong>UUID</strong></td>
+<td>Identifier type used for database records</td>
+</tr>
+<tr>
+<td><strong>Postman</strong></td>
+<td>API testing and regression testing</td>
+</tr>
+<tr>
+<td><strong>Swagger UI</strong></td>
+<td>Interactive API documentation provided by FastAPI</td>
+</tr>
+</tbody>
+</table>
+<p>The backend is therefore structured around the following flow:</p>
+<pre><code class="language-text">Client Application
+       |
+       v
+    FastAPI
+       |
+       v
+    Router
+       |
+       v
+    Service
+       |
+       v
+   SQLAlchemy
+       |
+       v
+ PostgreSQL
+</code></pre>
+<hr />
+<h2 id="3-python-configuration">3. Python Configuration</h2>
+<p>Python is the primary programming language used to implement the Bloom backend.</p>
+<p>Python is used for:</p>
+<ul>
+<li>API endpoints.</li>
+<li>Application logic.</li>
+<li>Database models.</li>
+<li>Services.</li>
+<li>Authentication.</li>
+<li>Validation.</li>
+<li>Utility functions.</li>
+<li>Analytics processing.</li>
+<li>Integrations.</li>
+</ul>
+<h3 id="python-installation">Python Installation</h3>
+<p>Python should be installed on the development machine before setting up the backend.</p>
+<p>Verify the installation:</p>
+<pre><code class="language-bash">python --version
+</code></pre>
+<p>or:</p>
+<pre><code class="language-bash">python3 --version
+</code></pre>
+<p>A virtual environment should be used to isolate backend dependencies from other Python projects.</p>
+<p>Create a virtual environment:</p>
+<pre><code class="language-bash">python -m venv venv
+</code></pre>
+<p>Activate it on Linux/macOS:</p>
+<pre><code class="language-bash">source venv/bin/activate
+</code></pre>
+<p>On Windows:</p>
+<pre><code class="language-bash">venv\Scripts\activate
+</code></pre>
+<p>After activation, install the backend dependencies:</p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<hr />
+<h2 id="4-fastapi">4. FastAPI</h2>
+<p>FastAPI is the web framework used to expose the Bloom backend as an HTTP API.</p>
+<p>FastAPI handles:</p>
+<ul>
+<li>Routing.</li>
+<li>HTTP requests.</li>
+<li>HTTP responses.</li>
+<li>Request validation.</li>
+<li>Dependency injection.</li>
+<li>API documentation.</li>
+<li>Error responses.</li>
+<li>Integration with Pydantic schemas.</li>
+</ul>
+<p>The main application entry point is:</p>
+<pre><code class="language-text">main.py
+</code></pre>
+<p>The application starts FastAPI and registers the backend routers.</p>
+<p>A simplified structure is:</p>
+<pre><code class="language-text">Client
+   |
+   v
+HTTP Request
+   |
+   v
+FastAPI
+   |
+   v
+Router
+   |
+   v
+Service
+   |
+   v
+Database
+</code></pre>
+<h3 id="running-fastapi-locally">Running FastAPI Locally</h3>
+<p>The FastAPI development server can be started using Uvicorn.</p>
+<p>A typical command is:</p>
+<pre><code class="language-bash">uvicorn main:app --reload
+</code></pre>
+<p>The <code>--reload</code> option automatically reloads the development server when source files change.</p>
+<p>Once the server is running, FastAPI provides interactive API documentation through Swagger UI.</p>
+<pre><code class="language-text">http://localhost:8000/docs
+</code></pre>
+<p>FastAPI also provides an alternative OpenAPI interface:</p>
+<pre><code class="language-text">http://localhost:8000/redoc
+</code></pre>
+<p>The actual host and port should follow the project's environment configuration.</p>
+<hr />
+<h2 id="5-api-architecture">5. API Architecture</h2>
+<p>The backend follows a layered architecture.</p>
+<p>The major layers are:</p>
+<pre><code class="language-text">Client Application
+        |
+        v
+     Router
+        |
+        v
+     Schema
+        |
+        v
+     Service
+        |
+        v
+   Repository / Data Access
+        |
+        v
+    SQLAlchemy
+        |
+        v
+    PostgreSQL
+</code></pre>
+<h3 id="router-layer">Router Layer</h3>
+<p>Routers define the API endpoints.</p>
+<p>They are responsible for:</p>
+<ul>
+<li>Receiving HTTP requests.</li>
+<li>Selecting the appropriate endpoint.</li>
+<li>Reading path and query parameters.</li>
+<li>Calling the appropriate service.</li>
+<li>Returning API responses.</li>
+</ul>
+<p>Examples of router areas in the backend include:</p>
+<pre><code class="language-text">routers/
+├── users
+├── locations
+├── maternal profiles
+├── symptoms
+├── symptom logs
+├── care schedules
+├── maternal health tips
+└── analytics
+</code></pre>
+<h3 id="service-layer">Service Layer</h3>
+<p>The service layer contains application and business logic.</p>
+<p>A router should not contain all of the application's business logic.</p>
+<p>Instead:</p>
+<pre><code class="language-text">API Request
+     |
+     v
+  Router
+     |
+     v
+  Service
+     |
+     v
+ Database
+</code></pre>
+<p>Services are responsible for processing the request and applying the rules required by the application.</p>
+<h3 id="database-layer">Database Layer</h3>
+<p>The database layer manages communication with PostgreSQL.</p>
+<p>SQLAlchemy models represent database tables as Python classes.</p>
+<hr />
+<h2 id="6-api-communication">6. API Communication</h2>
+<p>The Bloom clients communicate with the backend using HTTP requests.</p>
+<p>The backend exposes REST-style API resources.</p>
+<p>A request generally contains:</p>
+<pre><code class="language-text">HTTP Method
+Endpoint
+Headers
+Authentication information
+Request body
+</code></pre>
+<p>The backend processes the request and returns a structured response.</p>
+<p>For example:</p>
+<pre><code class="language-text">Mobile Application
+       |
+       | POST /...
+       | JSON body
+       |
+       v
+     FastAPI
+       |
+       v
+     Router
+       |
+       v
+     Service
+       |
+       v
+   PostgreSQL
+       |
+       v
+   JSON Response
+</code></pre>
+<p>The exact endpoint paths are defined by the registered FastAPI routers.</p>
+<hr />
+<h2 id="7-api-http-methods">7. API HTTP Methods</h2>
+<p>The backend can use standard HTTP methods depending on the operation exposed by each router.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>General Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td>Retrieve information</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td>Create a new resource</td>
+</tr>
+<tr>
+<td><code>PUT</code></td>
+<td>Replace or update a resource</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td>Partially update a resource</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>Delete a resource</td>
+</tr>
+</tbody>
+</table>
+<p>For example, a resource may follow this pattern:</p>
+<pre><code class="language-text">GET     /resource
+GET     /resource/{id}
+POST    /resource
+PUT     /resource/{id}
+DELETE  /resource/{id}
+</code></pre>
+<p>The exact routes available in Bloom should be taken from the FastAPI router definitions and Swagger documentation.</p>
+<hr />
+<h2 id="8-api-endpoint-groups">8. API Endpoint Groups</h2>
+<p>The backend provides functionality around the following application areas.</p>
+<h3 id="user-api">User API</h3>
+<p>Responsible for operations related to platform users.</p>
+<p>User functionality includes:</p>
+<ul>
+<li>User creation.</li>
+<li>User retrieval.</li>
+<li>User updates.</li>
+<li>User status.</li>
+<li>User roles.</li>
+<li>Authentication-related information.</li>
+<li>User location association.</li>
+</ul>
+<p>The user model is defined in:</p>
+<pre><code class="language-text">models/user.py
+</code></pre>
+<p>The corresponding API functionality is handled through the user router and service.</p>
+<hr />
+<h3 id="location-api">Location API</h3>
+<p>The location functionality manages geographic information associated with users and other platform functionality.</p>
+<p>The location model is:</p>
+<pre><code class="language-text">models/location.py
+</code></pre>
+<p>Location information includes:</p>
+<ul>
+<li>Location identifier.</li>
+<li>Location name.</li>
+<li>Latitude.</li>
+<li>Longitude.</li>
+<li>Creation timestamp.</li>
+</ul>
+<p>The backend also contains distance calculation functionality through:</p>
+<pre><code class="language-text">distance.py
+</code></pre>
+<hr />
+<h3 id="maternal-profile-api">Maternal Profile API</h3>
+<p>The maternal profile API manages information associated with a mother.</p>
+<p>The model is:</p>
+<pre><code class="language-text">models/maternal_profile.py
+</code></pre>
+<p>It stores information such as:</p>
+<ul>
+<li>User association.</li>
+<li>CHP code.</li>
+<li>Caregiver information.</li>
+<li>Caregiver phone number.</li>
+<li>Caregiver device token.</li>
+<li>Last menstrual period.</li>
+<li>Expected due date.</li>
+<li>Delivery date.</li>
+<li>Pregnancy status.</li>
+<li>Caregiver sharing code.</li>
+<li>Sharing-code expiration.</li>
+<li>Caregiver waiting status.</li>
+<li>Profile linking information.</li>
+</ul>
+<hr />
+<h3 id="symptom-api">Symptom API</h3>
+<p>The symptom API manages the predefined maternal conditions and their descriptions.</p>
+<p>The model is:</p>
+<pre><code class="language-text">models/symptom.py
+</code></pre>
+<p>Symptoms are associated with supported maternal conditions.</p>
+<p>The current model defines conditions including:</p>
+<pre><code class="language-text">postpartum hemorrhage
+pre-eclampsia/eclampsia
+sepsis
+</code></pre>
+<p>Each symptom contains:</p>
+<ul>
+<li>A UUID identifier.</li>
+<li>A condition name.</li>
+<li>A symptom description.</li>
+</ul>
+<hr />
+<h3 id="symptom-log-api">Symptom Log API</h3>
+<p>The symptom log functionality records symptoms associated with a maternal profile.</p>
+<p>The model is:</p>
+<pre><code class="language-text">models/symptom_log_item.py
+</code></pre>
+<p>A symptom log contains information such as:</p>
+<ul>
+<li>Logged symptoms.</li>
+<li>Maternal profile.</li>
+<li>Log date.</li>
+<li>Duration.</li>
+<li>Severity.</li>
+<li>Risk status.</li>
+<li>Trigger time.</li>
+</ul>
+<p>The system supports alert states including:</p>
+<pre><code class="language-text">Severity:
+- Low
+- Medium
+- Critical
+</code></pre>
+<p>Risk statuses include:</p>
+<pre><code class="language-text">- Triggered
+- CHP called
+- Resolved
+</code></pre>
+<hr />
+<h3 id="care-schedule-api">Care Schedule API</h3>
+<p>Care schedules are represented by:</p>
+<pre><code class="language-text">models/care_schedule.py
+</code></pre>
+<p>The care schedule functionality supports reminders related to maternal care.</p>
+<p>A schedule contains:</p>
+<ul>
+<li>Schedule identifier.</li>
+<li>Maternal profile.</li>
+<li>Reminder type.</li>
+<li>Scheduled times.</li>
+<li>Frequency.</li>
+<li>Status.</li>
+</ul>
+<p>Reminder types currently represented by the model include:</p>
+<pre><code class="language-text">Medication
+Anti-natal Care Visit
+</code></pre>
+<p>Supported frequencies include:</p>
+<pre><code class="language-text">Daily
+Weekly
+Monthly
+</code></pre>
+<p>Supported statuses include:</p>
+<pre><code class="language-text">Scheduled
+sent
+Completed
+</code></pre>
+<p>The scheduled time is represented as an array of datetime values.</p>
+<hr />
+<h3 id="maternal-health-tips-api">Maternal Health Tips API</h3>
+<p>Maternal health information is represented by:</p>
+<pre><code class="language-text">models/maternal_tip.py
+</code></pre>
+<p>A maternal health tip contains:</p>
+<ul>
+<li>Tip identifier.</li>
+<li>Title.</li>
+<li>Content.</li>
+<li>Pregnancy week.</li>
+<li>Creation timestamp.</li>
+</ul>
+<p>Pregnancy week is indexed to support efficient retrieval based on pregnancy stage.</p>
+<hr />
+<h3 id="analytics-api">Analytics API</h3>
+<p>Analytics functionality is handled by the backend.</p>
+<p>The backend contains analytics functionality under:</p>
+<pre><code class="language-text">routers/
+    analytics.py
+
+services/
+    analytics_service.py
+</code></pre>
+<p>The dashboard communicates with the backend API to retrieve analytics rather than accessing PostgreSQL directly.</p>
+<hr />
+<h2 id="9-request-and-response-validation">9. Request and Response Validation</h2>
+<p>FastAPI works with Pydantic schemas to validate incoming and outgoing API data.</p>
+<p>Validation ensures that API requests contain the expected:</p>
+<ul>
+<li>Fields.</li>
+<li>Data types.</li>
+<li>Required values.</li>
+<li>Optional values.</li>
+<li>Formats.</li>
+</ul>
+<p>A simplified request flow is:</p>
+<pre><code class="language-text">HTTP Request
+      |
+      v
+FastAPI
+      |
+      v
+Pydantic Validation
+      |
+      v
+Router
+      |
+      v
+Service
+      |
+      v
+Database
+</code></pre>
+<p>Invalid requests should be rejected before invalid data reaches the database layer.</p>
+<p>FastAPI can return validation errors using HTTP <code>422</code>.</p>
+<hr />
+<h2 id="10-postgresql-database">10. PostgreSQL Database</h2>
+<p>PostgreSQL is the primary relational database used by Bloom.</p>
+<p>The database stores information required by:</p>
+<ul>
+<li>The mobile application.</li>
+<li>The administrative dashboard.</li>
+<li>Backend services.</li>
+</ul>
+<p>Client applications do not connect directly to PostgreSQL.</p>
+<p>All database operations pass through the backend.</p>
+<pre><code class="language-text">Mobile Application
+        |
+        v
+     Bloom API
+        |
+        v
+     Backend
+        |
+        v
+   PostgreSQL
+</code></pre>
+<hr />
+<h2 id="11-sqlalchemy">11. SQLAlchemy</h2>
+<p>SQLAlchemy is the Object-Relational Mapper (ORM) used by the backend.</p>
+<p>Instead of writing SQL queries for every database operation, SQLAlchemy allows database tables to be represented as Python classes.</p>
+<p>For example:</p>
+<pre><code class="language-python">class User(Base):
+    __tablename__ = &quot;users&quot;
+</code></pre>
+<p>The class represents the <code>users</code> database table.</p>
+<p>SQLAlchemy provides:</p>
+<ul>
+<li>Table mapping.</li>
+<li>Column definitions.</li>
+<li>Relationships.</li>
+<li>Foreign keys.</li>
+<li>Database queries.</li>
+<li>Transactions.</li>
+<li>Database sessions.</li>
+</ul>
+<p>The models inherit from the project's SQLAlchemy <code>Base</code>:</p>
+<pre><code class="language-python">from database import Base
+</code></pre>
+<hr />
+<h2 id="12-sqlalchemy-data-types">12. SQLAlchemy Data Types</h2>
+<p>The backend uses SQLAlchemy data types to define the structure of PostgreSQL columns.</p>
+<h3 id="uuid">UUID</h3>
+<p>UUIDs are used as primary identifiers for many entities.</p>
+<p>Example:</p>
+<pre><code class="language-python">user_id = Column(
+    UUID(as_uuid=True),
+    primary_key=True,
+    default=uuid4
+)
+</code></pre>
+<p>UUIDs provide unique identifiers without relying on sequential integer IDs.</p>
+<hr />
+<h3 id="string">String</h3>
+<p>Strings are used for text fields with defined maximum lengths.</p>
+<p>Example:</p>
+<pre><code class="language-python">first_name = Column(String(100), nullable=False)
+</code></pre>
+<p>Examples of fields using strings include:</p>
+<ul>
+<li>First name.</li>
+<li>Last name.</li>
+<li>Email.</li>
+<li>Phone number.</li>
+<li>Location name.</li>
+<li>CHP code.</li>
+</ul>
+<hr />
+<h3 id="text">Text</h3>
+<p><code>Text</code> is used for longer text content.</p>
+<p>The maternal health tip model uses:</p>
+<pre><code class="language-python">content = Column(Text, nullable=False)
+</code></pre>
+<p>This allows longer health information to be stored than a short fixed-length string field.</p>
+<hr />
+<h3 id="integer">Integer</h3>
+<p>Integers are used for whole-number values.</p>
+<p>For example:</p>
+<pre><code class="language-python">pregnancy_week = Column(Integer, nullable=False)
+</code></pre>
+<p>The symptom log also uses an integer for duration.</p>
+<hr />
+<h3 id="float">Float</h3>
+<p>Floating-point numbers are used for geographic coordinates.</p>
+<p>The location model uses:</p>
+<pre><code class="language-python">latitude = Column(Float, nullable=False)
+longitude = Column(Float, nullable=False)
+</code></pre>
+<hr />
+<h3 id="boolean">Boolean</h3>
+<p>Boolean fields represent true/false states.</p>
+<p>For example:</p>
+<pre><code class="language-python">caregiver_waiting = Column(Boolean, default=False, nullable=False)
+</code></pre>
+<p>Another example is:</p>
+<pre><code class="language-python">is_deleted = Column(
+    Boolean,
+    nullable=False,
+    default=False,
+    server_default=&quot;false&quot;
+)
+</code></pre>
+<hr />
+<h3 id="date">Date</h3>
+<p><code>Date</code> is used when only a calendar date is required.</p>
+<p>Maternal profiles use dates for:</p>
+<pre><code class="language-text">lmp_date
+due_date
+delivery_date
+</code></pre>
+<hr />
+<h3 id="datetime">DateTime</h3>
+<p><code>DateTime</code> is used when both date and time are required.</p>
+<p>Examples include:</p>
+<pre><code class="language-text">created_at
+scheduled_time
+log_date
+triggered_at
+linked_at
+unlinked_at
+share_code_expires_at
+</code></pre>
+<hr />
+<h3 id="enum">Enum</h3>
+<p>Enums restrict a database field to a predefined set of values.</p>
+<p>For example, the user role is represented using:</p>
+<pre><code class="language-python">class UserRole(str, PyEnum):
+    ADMIN = &quot;admin&quot;
+    CHP = &quot;chp&quot;
+    MOTHER = &quot;mother&quot;
+</code></pre>
+<p>The database column then uses:</p>
+<pre><code class="language-python">role = Column(
+    Enum(UserRole, name=&quot;user_role_enum&quot;, create_type=True),
+    nullable=False
+)
+</code></pre>
+<p>This prevents arbitrary role values from being stored.</p>
+<hr />
+<h3 id="array">ARRAY</h3>
+<p>PostgreSQL array types are supported through SQLAlchemy.</p>
+<p>The care schedule uses:</p>
+<pre><code class="language-python">scheduled_time = Column(
+    ARRAY(DateTime),
+    nullable=False
+)
+</code></pre>
+<p>The symptom log uses:</p>
+<pre><code class="language-python">symptoms_logged = Column(
+    ARRAY(UUID(as_uuid=True)),
+    nullable=False,
+    default=list
+)
+</code></pre>
+<p>This allows multiple datetime values or multiple symptom UUIDs to be stored in a single field.</p>
+<hr />
+<h2 id="13-database-relationships">13. Database Relationships</h2>
+<p>SQLAlchemy relationships and foreign keys connect related entities.</p>
+<p>For example, a maternal profile references a user:</p>
+<pre><code class="language-python">user_id = Column(
+    UUID(as_uuid=True),
+    ForeignKey(
+        &quot;users.user_id&quot;,
+        ondelete=&quot;CASCADE&quot;
+    ),
+    nullable=False,
+    unique=True,
+    index=True
+)
+</code></pre>
+<p>This creates a relationship between:</p>
+<pre><code class="language-text">User
+ |
+ | user_id
+ v
+Maternal Profile
+</code></pre>
+<p>A symptom log item references a maternal profile:</p>
+<pre><code class="language-text">Maternal Profile
+       |
+       | profile_id
+       v
+Symptom Log Item
+</code></pre>
+<p>A care schedule also references the maternal profile:</p>
+<pre><code class="language-text">Maternal Profile
+       |
+       | profile_id
+       v
+Care Schedule
+</code></pre>
+<p>Locations are associated with users:</p>
+<pre><code class="language-text">Location
+    |
+    | location_id
+    v
+User
+</code></pre>
+<hr />
+<h2 id="14-cascade-and-referential-integrity">14. Cascade and Referential Integrity</h2>
+<p>Foreign keys are used to maintain relationships between database records.</p>
+<p>Some relationships use:</p>
+<pre><code class="language-python">ondelete=&quot;CASCADE&quot;
+</code></pre>
+<p>For example, the maternal profile references the user with cascade deletion.</p>
+<p>This means that when the parent record is deleted, dependent records can also be removed according to the database relationship.</p>
+<p>The user location relationship uses:</p>
+<pre><code class="language-python">ondelete=&quot;RESTRICT&quot;
+</code></pre>
+<p>This prevents deletion of a referenced location when dependent user records still exist.</p>
+<p>These rules help maintain database integrity.</p>
+<hr />
+<h2 id="15-database-models">15. Database Models</h2>
+<p>The main models currently documented for the Bloom backend are:</p>
+<pre><code class="language-text">models/
+├── user.py
+├── location.py
+├── maternal_profile.py
+├── symptom.py
+├── symptom_log_item.py
+├── care_schedule.py
+└── maternal_tip.py
+</code></pre>
+<p>Each model represents a database entity.</p>
+<h3 id="user">User</h3>
+<p>Table:</p>
+<pre><code class="language-text">users
+</code></pre>
+<p>Main fields include:</p>
+<pre><code class="language-text">user_id
+location_id
+first_name
+last_name
+role
+chp_code
+device_token
+phone_number
+email
+hashed_password
+user_status
+created_at
+is_deleted
+</code></pre>
+<hr />
+<h3 id="location">Location</h3>
+<p>Table:</p>
+<pre><code class="language-text">locations
+</code></pre>
+<p>Main fields:</p>
+<pre><code class="language-text">location_id
+location_name
+latitude
+longitude
+created_at
+</code></pre>
+<hr />
+<h3 id="maternal-profile">Maternal Profile</h3>
+<p>Table:</p>
+<pre><code class="language-text">maternal_profiles
+</code></pre>
+<p>Main fields:</p>
+<pre><code class="language-text">profile_id
+user_id
+chp_code
+caregiver_name
+caregiver_phone
+caregiver_device_token
+lmp_date
+due_date
+delivery_date
+status
+share_code
+share_code_expires_at
+caregiver_waiting
+linked_at
+unlinked_at
+</code></pre>
+<hr />
+<h3 id="symptom">Symptom</h3>
+<p>Table:</p>
+<pre><code class="language-text">symptoms
+</code></pre>
+<p>Main fields:</p>
+<pre><code class="language-text">symptom_id
+condition_name
+symptom_description
+</code></pre>
+<hr />
+<h3 id="symptom-log-item">Symptom Log Item</h3>
+<p>Table:</p>
+<pre><code class="language-text">symptom_log_items
+</code></pre>
+<p>Main fields:</p>
+<pre><code class="language-text">log_item_id
+symptoms_logged
+profile_id
+log_date
+duration
+severity
+risk_status
+triggered_at
+</code></pre>
+<hr />
+<h3 id="care-schedule">Care Schedule</h3>
+<p>Table:</p>
+<pre><code class="language-text">care_schedules
+</code></pre>
+<p>Main fields:</p>
+<pre><code class="language-text">care_schedule_id
+profile_id
+type
+scheduled_time
+frequency
+status
+</code></pre>
+<hr />
+<h3 id="maternal-health-tip">Maternal Health Tip</h3>
+<p>Table:</p>
+<pre><code class="language-text">maternal_health_tips
+</code></pre>
+<p>Main fields:</p>
+<pre><code class="language-text">tip_id
+title
+content
+pregnancy_week
+created_at
+</code></pre>
+<hr />
+<h2 id="16-authentication-and-user-roles">16. Authentication and User Roles</h2>
+<p>The backend supports different user roles.</p>
+<p>The current user role enum contains:</p>
+<pre><code class="language-text">admin
+chp
+mother
+</code></pre>
+<p>The role is stored in the <code>users</code> table.</p>
+<pre><code class="language-python">class UserRole(str, PyEnum):
+    ADMIN = &quot;admin&quot;
+    CHP = &quot;chp&quot;
+    MOTHER = &quot;mother&quot;
+</code></pre>
+<p>Roles allow the backend to determine what functionality a particular user can access.</p>
+<p>Authentication and authorization are handled by the backend rather than by the client applications alone.</p>
+<p>The client provides authentication information with API requests, and the backend verifies the request before allowing protected operations.</p>
+<hr />
+<h2 id="17-user-account-status">17. User Account Status</h2>
+<p>Users also have an account status.</p>
+<p>The supported values are:</p>
+<pre><code class="language-text">Active
+Inactive
+</code></pre>
+<p>The model defines:</p>
+<pre><code class="language-python">user_status = Column(
+    Enum(
+        &quot;Active&quot;,
+        &quot;Inactive&quot;,
+        name=&quot;user_status_enum&quot;
+    ),
+    nullable=False,
+    default=&quot;Active&quot;
+)
+</code></pre>
+<p>The model also contains:</p>
+<pre><code class="language-python">is_deleted = Column(
+    Boolean,
+    nullable=False,
+    default=False,
+    server_default=&quot;false&quot;
+)
+</code></pre>
+<p>This allows the application to distinguish between active records and records that have been marked as deleted.</p>
+<hr />
+<h2 id="18-maternal-profile-status">18. Maternal Profile Status</h2>
+<p>Maternal profiles contain a pregnancy status.</p>
+<p>The model currently defines:</p>
+<pre><code class="language-text">Pregnant
+Postpartum
+Pending Chart Initiation
+</code></pre>
+<p>The status is stored using a PostgreSQL enum.</p>
+<p>This allows the application to determine the current state of a maternal profile.</p>
+<hr />
+<h2 id="19-symptom-risk-and-alert-states">19. Symptom Risk and Alert States</h2>
+<p>Symptom log records contain severity and risk status.</p>
+<p>Severity values are:</p>
+<pre><code class="language-text">Low
+Medium
+Critical
+</code></pre>
+<p>Risk status values are:</p>
+<pre><code class="language-text">Triggered
+CHP called
+Resolved
+</code></pre>
+<p>This allows the backend to track the lifecycle of a symptom-related alert.</p>
+<p>The general process can be represented as:</p>
+<pre><code class="language-text">Symptom Recorded
+       |
+       v
+Risk Evaluated
+       |
+       v
+Alert Triggered
+       |
+       v
+CHP Called
+       |
+       v
+Resolved
+</code></pre>
+<p>The exact transition rules are implemented by the application services.</p>
+<hr />
+<h2 id="20-care-schedule-and-reminders">20. Care Schedule and Reminders</h2>
+<p>Care schedules allow the backend to store scheduled maternal-care activities.</p>
+<p>The supported reminder types include:</p>
+<pre><code class="language-text">Medication
+Anti-natal Care Visit
+</code></pre>
+<p>The supported frequencies include:</p>
+<pre><code class="language-text">Daily
+Weekly
+Monthly
+</code></pre>
+<p>The reminder lifecycle includes:</p>
+<pre><code class="language-text">Scheduled
+sent
+Completed
+</code></pre>
+<p>A schedule can contain multiple scheduled datetime values because <code>scheduled_time</code> is represented as a PostgreSQL array of <code>DateTime</code> values.</p>
+<hr />
+<h2 id="21-environment-configuration">21. Environment Configuration</h2>
+<p>Backend configuration should be stored through environment variables rather than hard-coded credentials.</p>
+<p>The backend provides an example configuration file:</p>
+<pre><code class="language-text">.env.example
+</code></pre>
+<p>Developers should create the appropriate local environment file based on the example.</p>
+<p>Sensitive values should not be committed to Git.</p>
+<p>Typical configuration areas may include:</p>
+<pre><code class="language-text">Database connection
+Application configuration
+Authentication configuration
+External service configuration
+</code></pre>
+<p>The exact environment variables used by the current backend should be taken from <code>.env.example</code> and the backend configuration module.</p>
+<hr />
+<h2 id="22-database-configuration">22. Database Configuration</h2>
+<p>Database functionality is provided through:</p>
+<pre><code class="language-text">database.py
+</code></pre>
+<p>The application imports the SQLAlchemy <code>Base</code> from the database module:</p>
+<pre><code class="language-python">from database import Base
+</code></pre>
+<p>Models then inherit from this base:</p>
+<pre><code class="language-python">class User(Base):
+</code></pre>
+<p>This connects the model definitions to the SQLAlchemy database configuration.</p>
+<p>The general relationship is:</p>
+<pre><code class="language-text">database.py
+     |
+     v
+SQLAlchemy Base
+     |
+     v
+Models
+     |
+     v
+Database Session
+     |
+     v
+PostgreSQL
+</code></pre>
+<hr />
+<h2 id="23-api-documentation">23. API Documentation</h2>
+<p>FastAPI automatically generates API documentation from the registered routes, request schemas, response schemas, and endpoint definitions.</p>
+<p>The main interactive documentation interface is Swagger UI.</p>
+<pre><code class="language-text">/docs
+</code></pre>
+<p>The alternative documentation interface is:</p>
+<pre><code class="language-text">/redoc
+</code></pre>
+<p>Swagger UI can be used to:</p>
+<ul>
+<li>View available endpoints.</li>
+<li>View HTTP methods.</li>
+<li>Inspect request parameters.</li>
+<li>Inspect request bodies.</li>
+<li>Inspect response schemas.</li>
+<li>Test API requests.</li>
+<li>Verify validation behaviour.</li>
+<li>Test authenticated endpoints where authentication is configured.</li>
+</ul>
+<p>The Swagger documentation should be treated as the authoritative list of currently registered API endpoints.</p>
+<hr />
+<h2 id="24-api-testing">24. API Testing</h2>
+<p>The backend API is tested using Postman and FastAPI's Swagger UI.</p>
+<h3 id="postman">Postman</h3>
+<p>Postman is used for:</p>
+<ul>
+<li>API request testing.</li>
+<li>CRUD testing.</li>
+<li>Authentication testing.</li>
+<li>Validation testing.</li>
+<li>Error response testing.</li>
+<li>Regression testing.</li>
+</ul>
+<p>A typical test flow is:</p>
+<pre><code class="language-text">Postman
+   |
+   v
+Bloom API
+   |
+   v
+Router
+   |
+   v
+Service
+   |
+   v
+Database
+</code></pre>
+<h3 id="swagger-ui">Swagger UI</h3>
+<p>Swagger UI is useful during development because it allows developers to test API endpoints directly from the generated API documentation.</p>
+<hr />
+<h2 id="25-api-error-handling">25. API Error Handling</h2>
+<p>The API should return appropriate HTTP status codes based on the result of a request.</p>
+<p>Common status codes include:</p>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>200</code></td>
+<td>Request completed successfully</td>
+</tr>
+<tr>
+<td><code>201</code></td>
+<td>Resource successfully created</td>
+</tr>
+<tr>
+<td><code>204</code></td>
+<td>Request completed with no response body</td>
+</tr>
+<tr>
+<td><code>400</code></td>
+<td>Invalid request</td>
+</tr>
+<tr>
+<td><code>401</code></td>
+<td>Authentication required or failed</td>
+</tr>
+<tr>
+<td><code>403</code></td>
+<td>Request is not authorized</td>
+</tr>
+<tr>
+<td><code>404</code></td>
+<td>Requested resource was not found</td>
+</tr>
+<tr>
+<td><code>422</code></td>
+<td>Request validation failed</td>
+</tr>
+<tr>
+<td><code>500</code></td>
+<td>Unexpected server-side error</td>
+</tr>
+</tbody>
+</table>
+<p>FastAPI handles validation errors and allows application code to return appropriate HTTP exceptions.</p>
+<hr />
+<h2 id="26-api-data-flow">26. API Data Flow</h2>
+<p>A typical request follows this architecture:</p>
+<pre><code class="language-text">Client
+  |
+  | HTTP Request
+  v
+FastAPI
+  |
+  v
+Router
+  |
+  v
+Pydantic Validation
+  |
+  v
+Service Layer
+  |
+  v
+SQLAlchemy
+  |
+  v
+PostgreSQL
+  |
+  v
+SQLAlchemy
+  |
+  v
+Service Layer
+  |
+  v
+API Response
+  |
+  v
+Client
+</code></pre>
+<p>This separation makes it possible to keep:</p>
+<ul>
+<li>HTTP handling in routers.</li>
+<li>Validation in schemas.</li>
+<li>Business logic in services.</li>
+<li>Database mapping in models.</li>
+<li>Database communication in the database layer.</li>
+</ul>
+<hr />
+<h2 id="27-backend-project-structure">27. Backend Project Structure</h2>
+<p>The backend follows a modular structure.</p>
+<p>A typical structure is:</p>
+<pre><code class="language-text">backend/
+│
+├── main.py
+├── database.py
+├── requirements.txt
+├── .env.example
+│
+├── routers/
+│   ├── users
+│   ├── locations
+│   ├── maternal_profiles
+│   ├── symptoms
+│   ├── symptom_log_items
+│   ├── care_schedules
+│   ├── maternal_tips
+│   └── analytics.py
+│
+├── services/
+│   ├── user_service
+│   ├── location_service
+│   ├── maternal_profile_service
+│   ├── symptom_service
+│   ├── symptom_log_item_service
+│   ├── care_schedule_service
+│   ├── maternal_tip_service
+│   └── analytics_service.py
+│
+├── models/
+│   ├── user.py
+│   ├── location.py
+│   ├── maternal_profile.py
+│   ├── symptom.py
+│   ├── symptom_log_item.py
+│   ├── care_schedule.py
+│   └── maternal_tip.py
+│
+└── utils/
+    └── distance.py
+</code></pre>
+<p>The exact filenames and directories should follow the current repository structure.</p>
+<hr />
+<h2 id="28-backend-and-client-separation">28. Backend and Client Separation</h2>
+<p>The Bloom architecture separates client applications from backend and database operations.</p>
+<pre><code class="language-text">                 ┌─────────────────────┐
+                 │   Mobile Application│
+                 └──────────┬──────────┘
+                            |
+                            |
+                       HTTP API
+                            |
+                            v
+                 ┌─────────────────────┐
+                 │    Bloom Backend    │
+                 │      FastAPI        │
+                 └──────────┬──────────┘
+                            |
+                       SQLAlchemy
+                            |
+                            v
+                 ┌─────────────────────┐
+                 │     PostgreSQL      │
+                 └─────────────────────┘
+
+                 ┌─────────────────────┐
+                 │ Administrative      │
+                 │ Dashboard            │
+                 └──────────┬──────────┘
+                            |
+                       HTTP API
+                            |
+                            v
+                       Bloom Backend
+</code></pre>
+<p>Neither the mobile application nor the dashboard needs direct database credentials.</p>
+<hr />
+<h2 id="29-backend-deployment">29. Backend Deployment</h2>
+<p>The backend is deployed separately from the mobile application, dashboard, and informational website.</p>
+<p>The backend deployment environment must provide:</p>
+<ul>
+<li>Python runtime.</li>
+<li>Backend dependencies.</li>
+<li>Environment variables.</li>
+<li>Database connectivity.</li>
+<li>API server process.</li>
+</ul>
+<h3 id="heroku-deployment">Heroku Deployment</h3>
+<p>The Bloom backend is deployed using <strong>Heroku</strong>.</p>
+<p>The deployment process requires the backend application and its dependencies to be available to the Heroku environment.</p>
+<p>The backend dependency file is:</p>
+<pre><code class="language-text">requirements.txt
+</code></pre>
+<p>Dependencies can be installed locally with:</p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<p>The backend also requires its environment configuration to be available in the deployment environment.</p>
+<p>Sensitive configuration values should be stored as Heroku environment/configuration variables rather than committed to the repository.</p>
+<hr />
+<h2 id="30-local-backend-setup">30. Local Backend Setup</h2>
+<p>A developer setting up the backend locally should follow these general steps.</p>
+<h3 id="step-1-clone-the-repository">Step 1 — Clone the repository</h3>
+<pre><code class="language-bash">git clone &lt;repository-url&gt;
+</code></pre>
+<p>Enter the backend directory:</p>
+<pre><code class="language-bash">cd backend
+</code></pre>
+<h3 id="step-2-create-a-virtual-environment">Step 2 — Create a virtual environment</h3>
+<pre><code class="language-bash">python -m venv venv
+</code></pre>
+<p>Activate it:</p>
+<pre><code class="language-bash">source venv/bin/activate
+</code></pre>
+<h3 id="step-3-install-dependencies">Step 3 — Install dependencies</h3>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<h3 id="step-4-configure-environment-variables">Step 4 — Configure environment variables</h3>
+<p>Create the environment file using the project's example configuration:</p>
+<pre><code class="language-text">.env.example
+</code></pre>
+<h3 id="step-5-configure-postgresql">Step 5 — Configure PostgreSQL</h3>
+<p>Ensure PostgreSQL is available and the required database configuration is provided to the backend.</p>
+<h3 id="step-6-start-fastapi">Step 6 — Start FastAPI</h3>
+<pre><code class="language-bash">uvicorn main:app --reload
+</code></pre>
+<h3 id="step-7-open-api-documentation">Step 7 — Open API documentation</h3>
+<p>Open:</p>
+<pre><code class="language-text">http://localhost:8000/docs
+</code></pre>
+<p>The Swagger interface can then be used to inspect and test the registered endpoints.</p>
+<hr />
+<h2 id="31-database-development-workflow">31. Database Development Workflow</h2>
+<p>When working with database functionality, developers should follow the application architecture instead of accessing PostgreSQL directly from the client applications.</p>
+<p>The workflow is:</p>
+<pre><code class="language-text">Define / update model
+        |
+        v
+Database schema
+        |
+        v
+Service logic
+        |
+        v
+Router
+        |
+        v
+API endpoint
+        |
+        v
+Client application
+</code></pre>
+<p>Changes to database models should be handled carefully because they affect the PostgreSQL schema and any API functionality that depends on the model.</p>
+<hr />
+<h2 id="32-api-endpoint-reference">32. API Endpoint Reference</h2>
+<p>The backend endpoint reference should be generated from the registered FastAPI routers.</p>
+<p>The main endpoint groups correspond to:</p>
+<pre><code class="language-text">Users
+Locations
+Maternal Profiles
+Symptoms
+Symptom Logs
+Care Schedules
+Maternal Health Tips
+Analytics
+</code></pre>
+<p>For the exact:</p>
+<ul>
+<li>HTTP method.</li>
+<li>URL path.</li>
+<li>Path parameters.</li>
+<li>Query parameters.</li>
+<li>Request body.</li>
+<li>Authentication requirement.</li>
+<li>Response schema.</li>
+<li>Status codes.</li>
+</ul>
+<p>developers should use the current Swagger documentation:</p>
+<pre><code class="language-text">/docs
+</code></pre>
+<p>This prevents the technical documentation from becoming inconsistent with the actual registered API routes.</p>
+<hr />
+<h2 id="33-development-practices">33. Development Practices</h2>
+<p>Backend development should follow a separation of responsibilities.</p>
+<h3 id="routers">Routers</h3>
+<p>Routers handle API communication.</p>
+<pre><code class="language-text">Request
+  |
+  v
+Router
+</code></pre>
+<h3 id="services">Services</h3>
+<p>Services handle business logic.</p>
+<pre><code class="language-text">Router
+  |
+  v
+Service
+</code></pre>
+<h3 id="models">Models</h3>
+<p>Models represent database entities.</p>
+<pre><code class="language-text">Service
+  |
+  v
+Model
+</code></pre>
+<h3 id="database">Database</h3>
+<p>The database layer handles database connectivity.</p>
+<pre><code class="language-text">Model
+  |
+  v
+SQLAlchemy
+  |
+  v
+PostgreSQL
+</code></pre>
+<p>This separation makes the application easier to maintain and test.</p>
+<hr />
+<h2 id="34-security-considerations">34. Security Considerations</h2>
+<p>The backend is responsible for protecting application data and controlling access to protected resources.</p>
+<p>Important security responsibilities include:</p>
+<ul>
+<li>Authentication.</li>
+<li>Authorization.</li>
+<li>User role enforcement.</li>
+<li>Password protection.</li>
+<li>Database access control.</li>
+<li>Environment variable protection.</li>
+<li>Input validation.</li>
+<li>API error handling.</li>
+<li>Protection of sensitive user information.</li>
+</ul>
+<p>Passwords should not be stored as plain text.</p>
+<p>The user model stores:</p>
+<pre><code class="language-text">hashed_password
+</code></pre>
+<p>rather than a plaintext password.</p>
+<p>Sensitive environment values should also never be committed to the source repository.</p>
+<hr />
+<h2 id="35-backend-testing-checklist">35. Backend Testing Checklist</h2>
+<p>Before considering a backend change complete, verify:</p>
+<ul>
+<li>API endpoint responds correctly.</li>
+<li>Request validation works.</li>
+<li>Required fields are enforced.</li>
+<li>Invalid data is rejected.</li>
+<li>Authentication is enforced where required.</li>
+<li>Authorization rules are respected.</li>
+<li>Database records are created correctly.</li>
+<li>Database relationships remain valid.</li>
+<li>Updates modify the expected records.</li>
+<li>Deletes follow the configured foreign-key rules.</li>
+<li>Correct HTTP status codes are returned.</li>
+<li>API responses match the expected schema.</li>
+<li>Swagger documentation reflects the endpoint.</li>
+<li>Postman tests pass.</li>
+</ul>
+<hr />
+<h2 id="36-troubleshooting">36. Troubleshooting</h2>
+<h3 id="fastapi-does-not-start">FastAPI does not start</h3>
+<p>Check:</p>
+<pre><code class="language-bash">python --version
+</code></pre>
+<p>Then verify dependencies:</p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<p>Also verify that the FastAPI application entry point is correct.</p>
+<hr />
+<h3 id="database-connection-fails">Database connection fails</h3>
+<p>Check:</p>
+<ul>
+<li>PostgreSQL is running.</li>
+<li>Database credentials are configured.</li>
+<li>Environment variables are loaded.</li>
+<li>Database name is correct.</li>
+<li>Host and port are correct.</li>
+<li>The backend has access to the database.</li>
+</ul>
+<hr />
+<h3 id="api-validation-error">API validation error</h3>
+<p>Check the request against the schema shown in Swagger UI.</p>
+<p>A <code>422</code> response generally indicates that the request data does not satisfy the expected validation rules.</p>
+<hr />
+<h3 id="endpoint-not-visible-in-swagger">Endpoint not visible in Swagger</h3>
+<p>Check that:</p>
+<ul>
+<li>The router exists.</li>
+<li>The router is imported.</li>
+<li>The router is registered with the FastAPI application.</li>
+<li>The endpoint is defined correctly.</li>
+</ul>
+<hr />
+<h2 id="37-related-documentation">37. Related Documentation</h2>
+<ul>
+<li><a href="../architecture/">Architecture</a></li>
+<li><a href="../database/">Database</a></li>
+<li><a href="../security/">Security</a></li>
+<li><a href="testing.md">Testing and QA</a></li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

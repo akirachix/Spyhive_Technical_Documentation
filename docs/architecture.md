@@ -1,6 +1,6 @@
 # Bloom System Architecture
 
-![Bloom System Architecture](../assets/sad.png)
+![Bloom System Architecture](assets/sad.png)
 
 ## 1. Architecture Overview
 
@@ -330,15 +330,3 @@ Application data is stored in PostgreSQL and accessed through the backend.
 The backend separates routers, services, repositories, schemas, and models so that different parts of the application can be maintained independently.
 
 ---
-
-## 11. Related Documentation
-
-- [Getting Started](getting-started.md)
-- [Platform Overview](overview.md)
-- [Backend API](backend-api.md)
-- [Database](database.md)
-- [Mobile Application](mobile.md)
-- [Administrative Dashboard](frontend-web.md)
-- [Security](security.md)
-- [Integrations](integrations.md)
-- [Deployment](deployment.md)
