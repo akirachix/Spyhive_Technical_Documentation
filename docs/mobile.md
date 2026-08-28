@@ -22,6 +22,15 @@ Mother / Caregiver / CHP
        |
    PostgreSQL
 ```
+---
+
+## 2. User Flow
+
+The Bloom mobile application follows different user flows depending on the user's role and the features they access.
+
+The user flow covers the main steps users take when interacting with the application, from authentication and profile setup to accessing maternal health features and services.
+
+[View Bloom Mobile User Flow](https://www.figma.com/design/xOG6fkIbWP1ZtLjHvgaTqJ/SpyHIve-User-Flows?node-id=0-1&p=f&t=YI9sriyGLWtHGNX0-0)
 
 ---
 

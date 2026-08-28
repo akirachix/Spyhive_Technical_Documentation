@@ -16,7 +16,7 @@ These components communicate through APIs to provide a connected maternal health
 
 ## 2. Platform Components
 
-### 📱 Mobile Application
+### Mobile Application
 
 The Bloom mobile application provides role-specific functionality for:
 
@@ -42,7 +42,7 @@ The mobile application communicates with the Bloom backend through the API layer
 
 ---
 
-### ⚙️ Backend API
+### Backend API
 
 The Bloom backend provides the central application services used by the mobile application and administrative dashboard.
 
@@ -66,7 +66,7 @@ The backend communicates with the PostgreSQL database for persistent data storag
 
 ---
 
-### 🖥️ Administrative Dashboard
+### Administrative Dashboard
 
 The Bloom administrative dashboard provides administrators with a centralized interface for managing and monitoring the platform.
 
@@ -82,7 +82,7 @@ The dashboard contains the following major areas:
 
 The dashboard communicates with the backend API to retrieve and update platform information.
 
-### 🌐 Informational Website
+### Informational Website
 
 The Bloom informational website provides publicly accessible information about the Bloom platform, its purpose, features and maternal health support services.
 
