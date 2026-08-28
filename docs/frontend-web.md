@@ -110,10 +110,9 @@ Administrator
 
 The hosted dashboard can be accessed through the following URL:
 
-```text
-Hosted Dashboard:
-[https://spyhive-dashboard.vercel.app]
-```
+
+[Hosted Dashboard:](https://spyhive-dashboard.vercel.app)
+
 
 The Vercel URL should be added here after deployment, for example:
 

@@ -6,8 +6,7 @@ The Bloom informational website provides public information about the Bloom plat
 
 The website is intended for visitors who want to learn about Bloom before using the mobile application or administrative dashboard.
 
-##**Bloom Informational Website:**
-**[https://bloom-rho-sand.vercel.app/]**
+[Bloom Informational Website:](https://bloom-rho-sand.vercel.app/)
 
 The informational website is separate from the authenticated administrative dashboard.
 
@@ -31,7 +30,7 @@ The website can provide information about Bloom, its purpose, features, services
 
 ---
 
-## ** 2. Purpose of the Informational Website**
+## **2. Purpose of the Informational Website**
 
 The informational website provides a public entry point to the Bloom platform.
 
@@ -48,7 +47,7 @@ The informational website does not provide direct access to the PostgreSQL datab
 
 ---
 
-##** 3. Website Structure**
+## **3. Website Structure**
 
 The informational website contains public-facing pages and content.
 
@@ -90,7 +89,7 @@ The exact pages depend on the implemented website structure.
 
 ---
 
-## ** 4. Navigation Bar**
+## **4. Navigation Bar**
 
 The informational website should be accessible from the main navigation bar.
 
@@ -134,7 +133,7 @@ If it is hosted separately, the navigation item should point to the deployed web
 
 ---
 
-## ** 5. Placement in the Project**
+## **5. Placement in the Project**
 
 The informational website should be placed in the frontend project alongside the other public-facing pages.
 
@@ -172,7 +171,7 @@ The `informational` directory contains the page responsible for displaying the p
 
 ---
 
-## ** 6. User Access**
+## **6. User Access**
 
 The informational website is intended to be publicly accessible.
 
@@ -214,7 +213,7 @@ Administrative Dashboard
 
 ---
 
-## ** 7. Informational Website and Bloom Backend**
+## **7. Informational Website and Bloom Backend**
 
 Public informational content may be displayed directly by the frontend when the content is static.
 
@@ -248,7 +247,7 @@ The informational website does not connect directly to PostgreSQL.
 
 ---
 
-## ** 8. Styling **
+## **8. Styling**
 
 The informational website uses frontend styling to provide a consistent and user-friendly interface.
 
@@ -282,7 +281,7 @@ Example:
 
 ---
 
-## ** 9. Responsive Design**
+## **9. Responsive Design**
 
 The informational website should support different screen sizes.
 
@@ -348,7 +347,7 @@ The informational website provides public information, while the mobile applicat
 
 ---
 
-##** 11. Informational Website and Mobile Application**
+## **11. Informational Website and Mobile Application**
 
 The informational website can provide information about the mobile application and explain the features available to users.
 
@@ -364,7 +363,7 @@ Caregivers and CHPs can access the functionality and information provided to the
 
 ---
 
-##** 12. Informational Website and Administrative Dashboard**
+## **12. Informational Website and Administrative Dashboard**
 
 The informational website is separate from the administrative dashboard.
 
@@ -411,7 +410,7 @@ This separation prevents public visitors from accessing administrative functiona
 
 ---
 
-##** 13. Deployment**
+## **13. Deployment**
 
 The informational website should be deployed using the hosting platform configured for the frontend application.
 
@@ -451,7 +450,7 @@ Replace the placeholder with the actual deployed Bloom informational website URL
 
 ---
 
-## ** 14. Navigation Link **
+## **14. Navigation Link**
 
 The informational website should also be included in the project's navigation configuration.
 
@@ -473,7 +472,7 @@ If the website is deployed separately, the link can instead point to the hosted 
 
 ---
 
-**## 15. Access Flow**
+## **15. Access Flow**
 
 The overall access flow is:
 
@@ -543,7 +542,7 @@ Bloom Backend
 
 ---
 
-##** 16. Summary**
+## **16. Summary**
 
 The Bloom informational website provides the public-facing introduction to the Bloom platform.
 
