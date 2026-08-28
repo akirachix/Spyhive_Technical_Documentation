@@ -1,0 +1,59 @@
+site_name: Bloom Technical Documentation
+site_description: Technical documentation for the Bloom maternal health platform
+site_author: Bloom Team
+
+theme:
+  name: material
+
+  logo: assets/logo.png
+
+  language: en
+
+  favicon: assets/logo.png
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Getting Started: getting-started.md
+
+  - Overview:
+      - System Overview: overview.md
+      - Architecture: architecture.md
+
+  - Backend:
+      - Backend API: backend-api.md
+      - Database: database.md
+      - Security: security.md
+      - Integrations: integrations.md
+
+  - Mobile:
+      - Mobile Application: mobile.md
+
+  - Dashboard:
+      - Web Dashboard: frontend-web.md
+
+  - Deployment:
+      - Deployment: deployment.md
+
+  - Development:
+      - Code Standards: code-standards.md
+      - Testing & QA: qa.md
+
+  - Reference:
+      - Glossary: glossary.md

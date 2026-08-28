@@ -1,0 +1,179 @@
+:root {
+  --bloom-primary: #81033E;
+  --bloom-accent: #FFC3D6;
+  --bloom-cream: #FAF6EB;
+  --bloom-white: #FFFFFF;
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #81033E;
+  --md-primary-fg-color--light: #FFC3D6;
+  --md-primary-fg-color--dark: #65022F;
+
+  --md-accent-fg-color: #81033E;
+
+  --md-default-bg-color: #FFFFFF;
+  --md-default-fg-color: #333333;
+  --md-typeset-a-color: #81033E;
+}
+
+.md-header {
+  background-color: #81033E;
+}
+
+.md-header__title {
+  font-weight: 700;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  color: #81033E;
+}
+
+.md-typeset a {
+  color: #81033E;
+}
+
+.md-typeset a:hover {
+  color: #65022F;
+}
+
+.md-tabs {
+  background-color: #81033E;
+}
+
+.md-nav__link:hover {
+  color: #81033E;
+}
+
+.md-nav__link--active {
+  color: #81033E;
+  font-weight: 700;
+}
+
+.md-typeset h1 {
+  color: #81033E;
+  font-weight: 800;
+}
+
+.md-typeset h2 {
+  color: #81033E;
+  font-weight: 700;
+}
+
+.md-typeset h3 {
+  color: #81033E;
+}
+
+.md-typeset a {
+  color: #81033E;
+}
+
+.md-typeset a:hover {
+  color: #9D2A61;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: #81033E;
+  color: #FFFFFF;
+}
+
+.md-typeset table:not([class]) tr:nth-child(even) {
+  background-color: #FFFFFF;
+}
+
+.md-typeset pre {
+  border: 1px solid #FFC3D6;
+  border-radius: 10px;
+}
+
+.md-typeset code {
+  border-radius: 4px;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 10px;
+}
+
+.md-search__form {
+  border-radius: 8px;
+}
+
+
+.md-button {
+  background-color: #81033E;
+  border-color: #81033E;
+  color: #FFFFFF;
+  border-radius: 8px;
+}
+
+.md-button:hover {
+  background-color: #65022F;
+  border-color: #65022F;
+}
+
+.bloom-card {
+  background-color: #FFFFFF;
+  border: 1px solid #FFC3D6;
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin: 1rem 0;
+}
+
+.bloom-card {
+  background-color: #FAF6EB;
+  border: 1px solid #FFC3D6;
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin: 1rem 0;
+}
+
+.bloom-card h3 {
+  color: #81033E;
+}
+
+.bloom-hero {
+  background-color: #81033E;
+  color: #FFFFFF;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+}
+
+.bloom-hero h1 {
+  color: #FFFFFF;
+}
+
+.bloom-hero p {
+  color: #FFFFFF;
+  font-size: 1.1rem;
+}
+
+.md-typeset hr {
+  border-bottom-color: #FFC3D6;
+}
+
+.md-typeset table:not([class]) {
+    border: 1px solid #FFC3D6;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+    border: 1px solid #FFC3D6;
+}
+
+.md-typeset table:not([class]) th {
+    background-color: #FAF6EB;
+    color: #81033E;
+}
+
+.md-sidebar--primary {
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.md-sidebar--secondary {
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
