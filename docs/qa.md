@@ -141,11 +141,3 @@ Before creating a pull request:
 - Include relevant testing information in the pull request.
 
 ---
-
-## 9. Related Documentation
-
-- [Getting Started](getting-started.md)
-- [Backend API](backend-api.md)
-- [Mobile Application](mobile.md)
-- [Administrative Dashboard](frontend-web.md)
-- [Code Standards](code-standards.md)
